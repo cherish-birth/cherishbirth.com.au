@@ -50,8 +50,26 @@ a {
   color: white;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
+
+a.btn {
+  display: inline-block;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+a.btn-block {
+  display: block;
+}
+a.btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 a > .fa-2x {
