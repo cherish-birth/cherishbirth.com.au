@@ -13,7 +13,9 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02b8af', endColorstr='#c0b3d6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
   color: white;
-  font-family: Georgia, serif;
+  font-family: 'Martel', Georgia, serif;
+  font-weight: 200;
+  font-size: 14px;
 }
 
 
@@ -21,8 +23,8 @@ body {
  * HEADERS & PARAGRAPHS
  */
 h1, h2, h3, h4, h5, h6 {
-  font-family: Verdana, Geneva, sans-serif;
-  font-weight: 100;
+  font-family: 'Source Sans Pro', Verdana, Geneva, sans-serif;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
