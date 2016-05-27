@@ -36,8 +36,8 @@ app.locals.pages.forEach(page => {
   if (!page.url || !page.template) return;
 
   router.get(page.url, (req, res) => res.render(page.template, {
-    title: (page.browserTitle ? `${page.browserTitle} | ` : '') + baseTitle,
-    active: page.activeMenuId
+    browserTitle: (page.browserTitle ? `${page.browserTitle} | ` : '') + baseTitle,
+    activeMenu: page.activeMenuId
   }));
 });
 

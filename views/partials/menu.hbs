@@ -1,7 +1,7 @@
 <nav>
-  {{#each pages}}
-    <a class="btn {{#equal active this.activeMenuId}}active{{/equal}}" href="{{ this.url }}">
-      {{{ this.menuTitle }}}
+  {{#each pages as |page index|}}
+    <a class="btn {{#equal page.activeMenuId ../activeMenu}}active{{/equal}}" href="{{ page.url }}">
+      {{{ page.menuTitle }}}
     </a>
   {{/each}}
 </nav>
