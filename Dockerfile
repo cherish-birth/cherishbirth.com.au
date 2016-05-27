@@ -1,13 +1,20 @@
-FROM nginx:alpine
+FROM mhart/alpine-node
 MAINTAINER Ben Booth <bkbooth@gmail.com>
 
-# Copy nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+EXPOSE 8000
 
 # Setup application directory
-ENV APP_DIR /usr/share/nginx/html
+ENV APP_DIR /usr/src/app
+RUN mkdir -p ${APP_DIR}
 WORKDIR ${APP_DIR}
 VOLUME ${APP_DIR}
 
 # Copy all application files
 COPY . ${APP_DIR}
+
+# Install node dependencies
+RUN npm install --quiet && \
+    npm cache clear
+
+# Run with nodemon
+CMD npm start

@@ -1,0 +1,23 @@
+{
+  "name": "cherish-birth",
+  "version": "1.0.0",
+  "description": "Cherish Birth website",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/bkbooth/cherish-birth.git"
+  },
+  "author": "Ben Booth <bkbooth@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://cherishbirth.com.au",
+  "dependencies": {
+    "express": "4.13.4",
+    "express-hbs": "1.0.1",
+    "morgan": "1.7.0",
+    "nodemon": "1.9.2"
+  }
+}

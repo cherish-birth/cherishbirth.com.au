@@ -16,58 +16,36 @@ body {
   font-family: Georgia, serif;
 }
 
+
+/**
+ * HEADERS & PARAGRAPHS
+ */
 h1, h2, h3, h4, h5, h6 {
   font-family: Verdana, Geneva, sans-serif;
   font-weight: 100;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.container {
-  width: auto;
-  padding: 80px 20px;
-  margin: 0 auto;
-}
-
-.container .logo {
-  max-width: 100%;
-}
-
-.justify {
-  text-align: justify;
-}
-
-h1 {
-  margin-top: 0;
-  text-transform: uppercase;
-  font-family: Tahoma, Geneva, sans-serif;
-  font-weight: 100;
-  letter-spacing: 0.03em;
-}
-
-nav {
-  margin: 15px 0 0;
-  text-align: center;
-}
-nav a.btn {
-  width: 26%;
-}
-nav span.more {
-  display: none;
+  letter-spacing: 0.15em;
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  margin: 40px 0 0;
+  margin: 25px 0 0;
 }
 h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
   margin-top: 10px;
 }
 
+
+/**
+ * LINKS & BUTTONS
+ */
 a {
   color: white;
 }
 a:not(.btn):hover {
   opacity: 0.7;
+}
+a > .fa-2x {
+  vertical-align: middle;
 }
 
 a.btn {
@@ -83,32 +61,61 @@ a.btn {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-
-  -webkit-transition: background-color 0.5s;
-  -moz-transition: background-color 0.5s;
-  -o-transition: background-color 0.5s;
-  transition: background-color 0.5s;
-}
-a.btn.active {
-  background-color: rgba(255, 255, 255, 0.3);
 }
 a.btn-block {
   display: block;
   margin: 10px 0 0;
 }
+a.btn.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
 a.btn:hover {
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-a > .fa-2x {
-  vertical-align: middle;
+
+/**
+ * SECTIONS
+ */
+.container {
+  width: auto;
+  padding: 80px 20px;
+  margin: 0 auto;
+}
+
+.logo {
+  max-width: 100%;
+}
+
+/* NAVBAR */
+nav {
+  margin: 15px 0;
+  text-align: center;
+}
+nav a.btn {
+  width: 26%;
+}
+nav span.more {
+  display: none;
+}
+
+/* CONTENT */
+.content {
+  margin: 40px 0;
+}
+.content p {
+  text-align: justify;
 }
 
 
-@media (min-width: 400px) {
-
-}
-
+/**
+ * RESPONSIVE OVERRIDES
+ */
 @media (min-width: 600px) {
   .container {
     width: 560px;
