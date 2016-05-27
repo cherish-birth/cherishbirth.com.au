@@ -13,6 +13,7 @@ hbs.registerHelper('equal', function equal(value1, value2, options) {
 
 // Setup the express app
 var app = express();
+app.locals.env = app.get('env');
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('port', process.env.PORT || 8000);

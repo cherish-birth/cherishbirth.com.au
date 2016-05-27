@@ -25,6 +25,10 @@
   {{#each pages}}
     <link rel="prefetch" href="{{ this.url }}">
   {{/each}}
+
+  {{#equal env 'production'}}
+    {{> analytics }}
+  {{/equal}}
 </head>
 <body>
   <div class="container">
