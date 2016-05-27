@@ -1,6 +1,6 @@
 {
   "name": "cherish-birth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cherish Birth website",
   "private": true,
   "main": "index.js",
