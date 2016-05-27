@@ -17,6 +17,10 @@
   <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/style.css">
+
+  {{#each pages}}
+    <link rel="prefetch" href="{{ this.url }}">
+  {{/each}}
 </head>
 <body>
   <div class="container">

@@ -2,18 +2,21 @@
   {
     "url": "/",
     "template": "index",
+    "menuTitle": "Home",
     "activeMenuId": "home"
   },
   {
     "url": "/why-a-doula",
     "template": "doula",
-    "title": "Why a Doula?",
+    "browserTitle": "Why a Doula?",
+    "menuTitle": "<span class='more'>Why a</span> Doula?",
     "activeMenuId": "doula"
   },
   {
     "url": "/about-me",
     "template": "about",
-    "title": "About Me",
+    "browserTitle": "About Me",
+    "menuTitle": "About Me",
     "activeMenuId": "about"
   }
 ]

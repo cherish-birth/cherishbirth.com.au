@@ -30,12 +30,12 @@ app.use('/', router);
 
 // Add the page routes
 var baseTitle = 'Cherish Birth';
-var pages = require('./pages.json');
-pages.forEach(page => {
+app.locals.pages = require('./pages.json');
+app.locals.pages.forEach(page => {
   if (!page.url || !page.template) return;
 
   router.get(page.url, (req, res) => res.render(page.template, {
-    title: (page.title ? `${page.title} | ` : '') + baseTitle,
+    title: (page.browserTitle ? `${page.browserTitle} | ` : '') + baseTitle,
     active: page.activeMenuId
   }));
 });
