@@ -24,30 +24,28 @@ app.engine('hbs', hbs.express4({
   defaultLayout: path.join(__dirname, '/views/layouts/main.hbs'),
 }));
 
-// Add the express routes
-var baseTitle = 'Cherish Birth';
+// Setup the express router
 var router = express.Router();
 app.use('/', router);
 
-router.get('/', (req, res) => res.render('index', {
-  title: baseTitle,
-  active: 'home',
-}));
-router.get('/about-me', (req, res) => res.render('about', {
-  title: `About Me | ${baseTitle}`,
-  active: 'about',
-}));
-router.get('/why-a-doula', (req, res) => res.render('doula', {
-  title: `Why a Doula? | ${baseTitle}`,
-  active: 'doula',
-}));
+// Add the page routes
+var baseTitle = 'Cherish Birth';
+var pages = require('./pages.json');
+pages.forEach(page => {
+  if (!page.url || !page.template) return;
 
-// Error handler
+  router.get(page.url, (req, res) => res.render(page.template, {
+    title: (page.title ? `${page.title} | ` : '') + baseTitle,
+    active: page.activeMenuId
+  }));
+});
+
+// Add the error handler
 app.use((req, res, next) => res.status(404).render('404', {
   title: `Not Found | ${baseTitle}`,
 }));
 
-// Create and start a http server
+// Create and start the http server
 var server = http.createServer(app);
 server.listen(app.get('port'), () => {
   console.log(`Serving on port ${app.get('port')}`);

@@ -1,0 +1,19 @@
+[
+  {
+    "url": "/",
+    "template": "index",
+    "activeMenuId": "home"
+  },
+  {
+    "url": "/why-a-doula",
+    "template": "doula",
+    "title": "Why a Doula?",
+    "activeMenuId": "doula"
+  },
+  {
+    "url": "/about-me",
+    "template": "about",
+    "title": "About Me",
+    "activeMenuId": "about"
+  }
+]
