@@ -16,6 +16,13 @@ body {
   font-family: Georgia, serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 .container {
   width: auto;
   padding: 80px 20px;
@@ -38,8 +45,26 @@ h1 {
   letter-spacing: 0.03em;
 }
 
+nav {
+  margin: 15px 0 0;
+  text-align: center;
+}
+nav a.btn {
+  width: 26%;
+}
+nav span.more {
+  display: none;
+}
+
 p {
   margin: 40px 0 0;
+}
+
+h3 {
+  margin: 40px 0 0;
+}
+h3 + p {
+  margin-top: 10px;
 }
 
 a {
@@ -62,6 +87,9 @@ a.btn {
   -o-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }
+a.btn.active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
 a.btn-block {
   display: block;
   margin: 10px 0 0;
@@ -74,8 +102,20 @@ a > .fa-2x {
   vertical-align: middle;
 }
 
+
+@media (min-width: 400px) {
+
+}
+
 @media (min-width: 600px) {
   .container {
     width: 560px;
+  }
+
+  nav a.btn {
+    width: 28%;
+  }
+  nav span.more {
+    display: inline;
   }
 }
