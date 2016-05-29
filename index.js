@@ -41,6 +41,16 @@ app.locals.pages.forEach(page => {
   }));
 });
 
+// Add a Sitemap.xml
+router.get('/sitemap.xml', (req, res) => {
+  res
+    .header('Content-Type', 'application/xml; charset=utf-8')
+    .render('sitemap', {
+      baseUrl: 'https://cherishbirth.com.au',
+      layout: null
+    });
+});
+
 // Add the error handler
 app.use((req, res, next) => res.status(404).render('404', {
   title: `Not Found | ${baseTitle}`,
