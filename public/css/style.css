@@ -38,6 +38,32 @@ h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
 
 
 /**
+ * LISTS
+ */
+ol.circles {
+  list-style-type: none;
+  margin: 25px 0 0;
+  padding: 0;
+}
+ol.circles > li {
+  margin: 10px 0 0;
+  counter-increment: steps-counter;
+}
+ol.circles > li:before {
+  content: counter(steps-counter);
+  color: #8a7f9c;
+  background: white;
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 13px;
+}
+
+
+/**
  * LINKS & BUTTONS
  */
 a {
