@@ -72,8 +72,11 @@ a {
 a:not(.btn):hover {
   opacity: 0.7;
 }
-a > .fa-2x {
+a > .fa {
   vertical-align: middle;
+}
+a > .fa:not(.fa-2x) {
+  line-height: 2em;
 }
 
 a.btn {
