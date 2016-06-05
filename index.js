@@ -4,6 +4,9 @@ var express = require('express');
 var morgan = require('morgan');
 var hbs = require('express-hbs');
 
+// Load environment from .env file
+require('dotenv').config();
+
 // Add a Handlebars 'equal' helper
 hbs.registerHelper('equal', function equal(value1, value2, options) {
   let op = value1 == value2 ? 'fn' : 'inverse';
