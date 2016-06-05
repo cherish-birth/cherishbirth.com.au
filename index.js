@@ -1,11 +1,12 @@
+// Load environment from .env file
+require('dotenv').config();
+
 var path = require('path');
 var http = require('http');
 var express = require('express');
 var morgan = require('morgan');
 var hbs = require('express-hbs');
-
-// Load environment from .env file
-require('dotenv').config();
+var md5File = require('md5-file');
 
 // Add a Handlebars 'equal' helper
 hbs.registerHelper('equal', function equal(value1, value2, options) {
@@ -16,7 +17,6 @@ hbs.registerHelper('equal', function equal(value1, value2, options) {
 
 // Setup the express app
 var app = express();
-app.locals.env = app.get('env');
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('port', process.env.PORT || 8000);
@@ -27,6 +27,10 @@ app.engine('hbs', hbs.express4({
   layoutsDir: path.join(__dirname, '/views/layouts'),
   defaultLayout: path.join(__dirname, '/views/layouts/main.hbs'),
 }));
+
+// Add view variables
+app.locals.env = app.get('env');
+app.locals.cssHash = md5File.sync(path.join(__dirname, '/public/css/style.css'));
 
 // Setup the express router
 var router = express.Router();
