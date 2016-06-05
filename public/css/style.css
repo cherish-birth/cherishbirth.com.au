@@ -94,6 +94,11 @@ a.btn {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
 }
 a.btn-block {
   display: block;
@@ -103,11 +108,6 @@ a.btn.active {
   background-color: rgba(255, 255, 255, 0.3);
 }
 a.btn:hover {
-  -webkit-transition: background-color 0.5s;
-  -moz-transition: background-color 0.5s;
-  -o-transition: background-color 0.5s;
-  transition: background-color 0.5s;
-
   background-color: rgba(255, 255, 255, 0.4);
 }
 
