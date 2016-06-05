@@ -46,8 +46,9 @@ ol.circles {
   padding: 0;
 }
 ol.circles > li {
-  margin: 10px 0 0;
   counter-increment: steps-counter;
+  margin: 10px 0 0 34px;
+  text-indent: -34px;
 }
 ol.circles > li:before {
   content: counter(steps-counter);
@@ -57,6 +58,7 @@ ol.circles > li:before {
   width: 26px;
   height: 26px;
   line-height: 26px;
+  text-indent: 0;
   text-align: center;
   margin-right: 8px;
   border-radius: 13px;
