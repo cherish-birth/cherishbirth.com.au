@@ -30,7 +30,8 @@ app.engine('hbs', hbs.express4({
 
 // Add view variables
 app.locals.env = app.get('env');
-app.locals.cssHash = md5File.sync(path.join(__dirname, '/public/css/style.css'));
+app.locals.cssFile = app.locals.env === 'production' ? 'style.min.css' : 'style.css';
+app.locals.cssHash = md5File.sync(path.join(__dirname, '/public/css/', app.locals.cssFile));
 
 // Setup the express router
 var router = express.Router();

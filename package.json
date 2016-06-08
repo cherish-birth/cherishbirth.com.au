@@ -5,7 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "version": "npm run buildcss && git add --all public/css/",
+    "buildcss": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
     "md5-file": "3.1.0",
     "morgan": "1.7.0",
     "nodemon": "1.9.2"
+  },
+  "devDependencies": {
+    "clean-css": "3.4.17"
   }
 }

@@ -24,7 +24,8 @@
     <link href="/css/fonts.css" rel="stylesheet">
   {{/equal}}
 
-  <link href="/css/style.css?hash={{ cssHash }}" rel="stylesheet">
+  <!-- Site stylesheet -->
+  <link href="/css/{{ cssFile }}?hash={{ cssHash }}" rel="stylesheet">
 
   {{#each pages}}
     <link rel="prefetch" href="{{ this.url }}">
