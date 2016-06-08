@@ -17,8 +17,12 @@
   <link href="/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- Google webfonts -->
-  <link href="https://fonts.googleapis.com/css?family=Martel:200" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+  {{#equal env 'production'}}
+    <link href="https://fonts.googleapis.com/css?family=Martel:200,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+  {{else}}
+    <link href="/css/fonts.css" rel="stylesheet">
+  {{/equal}}
 
   <link href="/css/style.css?hash={{ cssHash }}" rel="stylesheet">
 
