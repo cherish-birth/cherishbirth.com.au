@@ -2,6 +2,7 @@
   {
     "url": "/",
     "template": "index",
+    "showInMenu": true,
     "menuTitle": "Home",
     "activeMenuId": "home"
   },
@@ -9,6 +10,7 @@
     "url": "/why-a-doula",
     "template": "doula",
     "browserTitle": "Why a Doula?",
+    "showInMenu": true,
     "menuTitle": "<span class='more'>Why a</span> Doula?",
     "activeMenuId": "doula"
   },
@@ -16,7 +18,14 @@
     "url": "/about-me",
     "template": "about",
     "browserTitle": "About Me",
+    "showInMenu": true,
     "menuTitle": "About Me",
     "activeMenuId": "about"
+  },
+  {
+    "url": "/contact",
+    "template": "contact",
+    "browserTitle": "Contact",
+    "showInMenu": false
   }
 ]

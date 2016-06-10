@@ -30,8 +30,10 @@ app.engine('hbs', hbs.express4({
 
 // Add view variables
 app.locals.env = app.get('env');
-app.locals.cssFile = app.locals.env === 'production' ? 'style.min.css' : 'style.css';
-app.locals.cssHash = md5File.sync(path.join(__dirname, '/public/css/', app.locals.cssFile));
+app.locals.cssFile = app.locals.env === 'production' ? '/css/style.min.css' : '/css/style.css';
+app.locals.cssHash = md5File.sync(path.join(__dirname, '/public', app.locals.cssFile));
+app.locals.jsFile = app.locals.env === 'production' ? '/js/script.min.js' : '/js/script.js';
+app.locals.jsHash = md5File.sync(path.join(__dirname, '/public', app.locals.jsFile));
 
 // Setup the express router
 var router = express.Router();
@@ -45,7 +47,7 @@ app.locals.pages.forEach(page => {
 
   router.get(page.url, (req, res) => res.render(page.template, {
     browserTitle: (page.browserTitle ? `${page.browserTitle} | ` : '') + baseTitle,
-    activeMenu: page.activeMenuId
+    activeMenu: page.activeMenuId || null,
   }));
 });
 
@@ -55,7 +57,7 @@ router.get('/sitemap.xml', (req, res) => {
     .header('Content-Type', 'application/xml; charset=utf-8')
     .render('sitemap', {
       baseUrl: 'https://cherishbirth.com.au',
-      layout: null
+      layout: null,
     });
 });
 

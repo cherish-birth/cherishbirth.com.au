@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>
-    {{ browserTitle }} |
-    With you from pregnancy to parenthood |
-    Illawarra Birth Doula
-  </title>
-  <link rel="icon" type="image/png" href="/favicon.png">
+    <title>
+      {{ browserTitle }} |
+      With you from pregnancy to parenthood |
+      Illawarra Birth Doula
+    </title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-  <!-- Font Awesome -->
-  <!--<script src="https://use.fontawesome.com/aa67c5294a.js"></script>-->
-  <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Vendor stylesheets -->
+    {{#equal env 'production'}}
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Martel:200,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+    {{else}}
+      <link href="/vendor/font-awesome.css" rel="stylesheet">
+      <link href="/vendor/google-fonts.css" rel="stylesheet">
+    {{/equal}}
 
-  <!-- Google webfonts -->
-  {{#equal env 'production'}}
-    <link href="https://fonts.googleapis.com/css?family=Martel:200,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
-  {{else}}
-    <link href="/css/fonts.css" rel="stylesheet">
-  {{/equal}}
+    <!-- Site stylesheet -->
+    <link href="{{ cssFile }}?hash={{ cssHash }}" rel="stylesheet">
 
-  <!-- Site stylesheet -->
-  <link href="/css/{{ cssFile }}?hash={{ cssHash }}" rel="stylesheet">
+    {{#each pages}}
+      <link rel="prefetch" href="{{ this.url }}">
+    {{/each}}
 
-  {{#each pages}}
-    <link rel="prefetch" href="{{ this.url }}">
-  {{/each}}
+    {{#equal env 'production'}}
+      {{> analytics }}
+    {{/equal}}
+  </head>
+  <body>
+    <div class="container">
+      <img src="/images/cherish-birth-logo.png" class="logo">
 
-  {{#equal env 'production'}}
-    {{> analytics }}
-  {{/equal}}
-</head>
-<body>
-  <div class="container">
-    <img src="/images/cherish-birth-logo.png" class="logo">
+      {{> menu }}
 
-    {{> menu }}
+      <div class="content">
+        {{{ body }}}
+      </div>
 
-    <div class="content">
-      {{{ body }}}
+      {{> links }}
     </div>
 
-    {{> links }}
-  </div>
-</body>
+    <!-- Vendor scripts -->
+    {{#equal env 'production'}}
+      <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <![endif]-->
+      <!--[if !IE]> -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script>
+      <!-- <![endif]-->
+    {{else}}
+      <script src="/vendor/zepto.js"></script>
+    {{/equal}}
+
+    <!-- Site scripts -->
+    <script src="{{ jsFile }}?hash={{ jsHash }}"></script>
+  </body>
 </html>
