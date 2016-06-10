@@ -1,6 +1,6 @@
 <p>
-  Please fill in and submit the following form and I'll try and get back to you
-  as soon as possible.
+  Please fill in and send the following form and I'll try and get back to you as
+  soon as possible.
 </p>
 
 <form id="contact"
@@ -43,10 +43,28 @@
 
   <p>
     <input type="hidden" name="_subject" value="Hello via Cherish Birth contact form">
-    <input type="text" name="_gotcha" style="display: none;">
+    <input type="text" name="_gotcha">
     <button type="submit" class="btn btn-block" id="submit">
+      <i class="not-sending fa fa-fw fa-paper-plane-o"></i>
+      <i class="is-sending fa fa-fw fa-spinner fa-pulse"></i>
       Send it
-      <i class="fa fa-fw fa-paper-plane-o"></i>
     </button>
+  </p>
+
+  <p class="form-submitted-message">
+    <span class="is-submitted">
+      <i class="fa fa-fw fa-thumbs-o-up"></i>
+      Sent! Thanks for contacting me, I'll get back to you as soon as possible!
+    </span>
+    <span class="failed-submitting">
+      <i class="fa fa-fw fa-thumbs-o-down"></i>
+      Oh no! Something went wrong. You can try submitting the form again or
+      email me directly at
+      <a href="mailto:hello@cherishbirth.com.au?cc=support@cherishbirth.com.au
+               &amp;subject=Hello
+               &amp;body=%0D%0A%0D%0AP.S.%20Something%20went%20wrong%20with%20your%20contact%20form">
+        hello@cherishbirth.com.au
+      </a>
+    </span>
   </p>
 </form>

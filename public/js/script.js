@@ -29,31 +29,51 @@ function onReady($) {
       return data;
     }, {});
 
-    console.log('SUBMIT!', formData);
     $.ajax({
       url: form.action,
       type: form.method,
       data: formData,
       dataType: 'json',
-      success: onSubmitSuccess,
-      error: onSubmitError,
-      complete: onSubmitComplete,
+      success: onSubmitSuccess.bind(null, form),
+      error: onSubmitError.bind(null, form),
+      complete: onSubmitComplete.bind(null, form),
     });
 
-    // TODO: show spinner and/or message while sending
-    // TODO: handle success/error with friendly messages
+    $(form)
+      .addClass('is-sending')
+      .removeClass('is-submitted failed-submitting')
+      .find('button[type=submit]')
+      .prop('disabled', true);
   }
 
-  function onSubmitSuccess(data, status, xhr) {
-    console.log('SUCCESS!', data, status, xhr);
+  /**
+   * Successfully submitted contact form
+   *
+   * @param {HTMLFormElement} form
+   */
+  function onSubmitSuccess(form) {
+    $(form).addClass('is-submitted');
   }
 
-  function onSubmitError(xhr, errorType, error) {
-    console.log('ERROR!', xhr, errorType, error);
+  /**
+   * Failed submitting contact form
+   *
+   * @param {HTMLFormElement} form
+   */
+  function onSubmitError(form) {
+    $(form)
+      .addClass('failed-submitting')
+      .find('button[type=submit]')
+      .prop('disabled', false);
   }
 
-  function onSubmitComplete(xhr, status) {
-    console.log('COMPLETE!', xhr, status);
+  /**
+   * Completed (success or fail) submitting contact form
+   *
+   * @param {HTMLFormElement} form
+   */
+  function onSubmitComplete(form) {
+    $(form).removeClass('is-sending');
   }
 
   /**
