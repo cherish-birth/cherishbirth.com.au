@@ -205,6 +205,7 @@ form .input-group > label {
 
   font-size: 16px;
   color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
 
   -webkit-transition: top 0.3s, font-size 0.3s, color 0.3s;
   -moz-transition: top 0.3s, font-size 0.3s, color 0.3s;
@@ -292,7 +293,7 @@ nav {
   text-align: center;
 }
 nav a.btn {
-  width: 26%;
+  width: 24%;
 }
 nav span.more {
   display: none;
