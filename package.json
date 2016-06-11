@@ -6,8 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "version": "npm run buildcss && git add --all public/css/",
-    "buildcss": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css"
+    "version": "npm run buildcss && npm run buildjs && git add --all public/",
+    "buildcss": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css",
+    "buildjs": "uglifyjs public/js/script.js -c -m -p 2 -o public/js/script.min.js --source-map public/js/script.min.js.map --source-map-url script.min.js.map"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "nodemon": "1.9.2"
   },
   "devDependencies": {
-    "clean-css": "3.4.17"
+    "clean-css": "3.4.17",
+    "uglify-js": "2.6.2"
   }
 }

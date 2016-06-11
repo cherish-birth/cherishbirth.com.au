@@ -81,15 +81,17 @@ a > .fa:not(.fa-2x) {
   line-height: 2em;
 }
 
-a.btn {
+.btn {
   color: white;
   text-decoration: none;
-  opacity: 1.0;
+  opacity: 1;
+  cursor: pointer;
 
   display: inline-block;
   padding: 10px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  outline: none;
 
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -100,15 +102,175 @@ a.btn {
   -o-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }
-a.btn-block {
+.btn-block {
   display: block;
   margin: 0 0 10px;
 }
-a.btn.active {
+.btn.active {
   background-color: rgba(255, 255, 255, 0.3);
 }
-a.btn:hover {
+.btn:hover,
+.btn:focus {
   background-color: rgba(255, 255, 255, 0.4);
+}
+.btn:disabled {
+  cursor: not-allowed;
+  color: #eee;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+/**
+ * FORMS
+ */
+/* inputs and textarea */
+form textarea {
+  resize: vertical;
+}
+form input[type=text],
+form input[type=email],
+form textarea {
+  color: white;
+  font-family: 'Martel', Georgia, serif;
+  font-weight: 200;
+  font-size: 16px;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 100%;
+  padding: 20px 0 3px;
+
+  background: none;
+  border: none;
+  outline: none;
+}
+form input[name=_gotcha] {
+  display: none;
+}
+
+/* button */
+form .btn {
+  font-family: 'Martel', Georgia, serif;
+  font-weight: 200;
+  font-size: 16px;
+  margin-top: 36px;
+}
+
+/* input group (with underline) */
+form p,
+form .input-group {
+  margin: 18px 0 0;
+}
+form .input-group {
+  position: relative;
+
+  border-color: rgba(255, 255, 255, 0.3);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+
+  margin-bottom: 26px;
+}
+form .input-group:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  right: 50%;
+  height: 3px;
+  background: rgb(255, 255, 255);
+
+  -webkit-transition: left 0.3s, right 0.3s;
+  -moz-transition: left 0.3s, right 0.3s;
+  -o-transition: left 0.3s, right 0.3s;
+  transition: left 0.3s, right 0.3s;
+}
+form .input-group.is-invalid:after {
+  background: rgb(173, 31, 31);
+}
+form .input-group.is-invalid:after,
+form .input-group.is-focused:after {
+  left: 0;
+  right: 0;
+}
+
+/* floating label */
+form .input-group > label {
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+
+  -webkit-transition: top 0.3s, font-size 0.3s, color 0.3s;
+  -moz-transition: top 0.3s, font-size 0.3s, color 0.3s;
+  -o-transition: top 0.3s, font-size 0.3s, color 0.3s;
+  transition: top 0.3s, font-size 0.3s, color 0.3s;
+}
+form .input-group.is-focused > label,
+form .input-group.is-dirty > label {
+  top: 0;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+}
+
+/* input error message */
+form .input-group > .input-error-message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -26px;
+
+  font-size: 12px;
+  color: rgb(173, 31, 31);
+  opacity: 0;
+
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+form .input-group.is-invalid > .input-error-message {
+  opacity: 1;
+}
+
+/* is sending */
+form .btn > i.is-sending {
+  display: none;
+}
+form.is-sending .btn > i.is-sending {
+  display: inline-block;
+}
+form.is-sending .btn > i.not-sending {
+  display: none;
+}
+
+/* form submitted messages */
+form .form-submitted-message {
+  opacity: 0;
+
+  -webkit-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+form.is-submitted .form-submitted-message,
+form.failed-submitting .form-submitted-message {
+  opacity: 1;
+}
+form .form-submitted-message > .failed-submitting {
+  display: none;
+}
+form.failed-submitting .form-submitted-message > .is-submitted {
+  display: none;
+}
+form.failed-submitting .form-submitted-message > .failed-submitting {
+  display: block;
 }
 
 
@@ -131,7 +293,7 @@ nav {
   text-align: center;
 }
 nav a.btn {
-  width: 26%;
+  width: 24%;
 }
 nav span.more {
   display: none;
