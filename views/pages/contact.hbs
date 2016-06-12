@@ -4,7 +4,11 @@
 </p>
 
 <form id="contact"
-      action="https://formspree.io/hello@cherishbirth.com.au"
+      {{#equal env 'production'}}
+        action="https://formspree.io/hello@cherishbirth.com.au"
+      {{else}}
+        action="https://formspree.io/support@cherishbirth.com.au"
+      {{/equal}}
       method="post"
       novalidate>
   <div class="input-group">
@@ -42,6 +46,9 @@
   </div>
 
   <p>
+    {{#equal env 'production'}}
+      <input type="hidden" name="_cc" value="support@cherishbirth.com.au">
+    {{/equal}}
     <input type="hidden" name="_subject" value="Hello via Cherish Birth contact form">
     <input type="text" name="_gotcha">
     <button type="submit" class="btn btn-block" id="submit">
