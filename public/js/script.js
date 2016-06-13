@@ -20,7 +20,7 @@ function onReady($) {
    */
   function onSubmit(event) {
     var form = /** @type {HTMLFormElement} */ event.target;
-    var fields = ['name', 'email', 'phoneNumber', 'message', '_subject', '_gotcha'];
+    var fields = ['name', 'email', 'phoneNumber', 'message', '_cc', '_subject', '_gotcha'];
     if (!validateInputs(form, fields)) {
       return event.preventDefault();
     }
