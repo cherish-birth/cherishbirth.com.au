@@ -4,6 +4,9 @@
  * @param {function} $
  */
 function onReady($) {
+  var isLteIe9 = $('html').hasClass('lte-ie9');
+  var propMethod = isLteIe9 ? 'attr' : 'prop';
+
   var form = $('form#contact');
   if (form.length) {
     form.on('submit', onSubmit);
@@ -16,12 +19,17 @@ function onReady($) {
    * @param {Event} event
    */
   function onSubmit(event) {
-    event.preventDefault();
-
     var form = /** @type {HTMLFormElement} */ event.target;
     var fields = ['name', 'email', 'phoneNumber', 'message', '_subject', '_gotcha'];
     if (!validateInputs(form, fields)) {
+      return event.preventDefault();
+    }
+
+    // Use normal HTTP form submission for <IE10
+    if (isLteIe9) {
       return;
+    } else {
+      event.preventDefault();
     }
 
     var formData = fields.reduce(function _reduce(data, field) {
@@ -43,7 +51,7 @@ function onReady($) {
       .addClass('is-sending')
       .removeClass('is-submitted failed-submitting')
       .find('button[type=submit]')
-      .prop('disabled', true);
+      [propMethod]('disabled', true);
   }
 
   /**
@@ -64,7 +72,7 @@ function onReady($) {
     $(form)
       .addClass('failed-submitting')
       .find('button[type=submit]')
-      .prop('disabled', false);
+      [propMethod]('disabled', false);
   }
 
   /**
@@ -89,7 +97,7 @@ function onReady($) {
 
     // Validate 'required' fields
     fields.forEach(function _forEach(field) {
-      if (form[field].required && !form[field].value) {
+      if ($(form[field])[propMethod]('required') && !form[field].value) {
         valid = false;
         $(form[field]).parent().addClass('is-invalid');
       }
@@ -166,11 +174,11 @@ function onReady($) {
     }
 
     // If phone number entered, remove 'required' from email field
-    var emailInput = input.form.email;
-    var $emailParent = $(emailInput).parent();
+    var $emailInput = $(input.form.email);
+    var $emailParent = $emailInput.parent();
     if (input.name === 'phoneNumber') {
-      emailInput.required = !input.value;
-      if (!emailInput.required && $emailParent.hasClass('is-invalid')) {
+      $emailInput[propMethod]('required', !input.value);
+      if (!$emailInput[propMethod]('required') && $emailParent.hasClass('is-invalid')) {
         $emailParent.removeClass('is-invalid');
       }
     }
