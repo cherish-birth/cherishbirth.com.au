@@ -70,7 +70,7 @@ ol.circles > li:before {
  * LINKS & BUTTONS
  */
 a {
-  color: white;
+  color: #585858;
 }
 a:not(.btn):hover {
   opacity: 0.7;
