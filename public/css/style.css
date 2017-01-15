@@ -5,14 +5,14 @@ html, body {
 }
 
 body {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#02b8af+0,c0b3d6+70,c0b3d6+100 */
-  background: #02b8af; /* Old browsers */
-  background: -moz-linear-gradient(-45deg,  #02b8af 0%, #c0b3d6 70%, #c0b3d6 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg,  #02b8af 0%,#c0b3d6 70%,#c0b3d6 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg,  #02b8af 0%,#c0b3d6 70%,#c0b3d6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#02b8af', endColorstr='#c0b3d6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+60,f2f2f2+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #ffffff 0%, #ffffff 60%, #f2f2f2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg,  #ffffff 0%,#ffffff 60%,#f2f2f2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg,  #ffffff 0%,#ffffff 60%,#f2f2f2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-  color: white;
+  color: #585858;
   font-family: 'Martel', Georgia, serif;
   font-weight: 200;
   font-size: 14px;
@@ -52,8 +52,9 @@ ol.circles > li {
 }
 ol.circles > li:before {
   content: counter(steps-counter);
-  color: #8a7f9c;
-  background: white;
+  color: white;
+  background: #8ad1cc;
+  border: 1px solid #93dad5;
   display: inline-block;
   width: 26px;
   height: 26px;
@@ -89,29 +90,31 @@ a > .fa:not(.fa-2x) {
 
   display: inline-block;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #8ad1cc;
+  border: 1px solid #93dad5;
   outline: none;
 
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
 
-  -webkit-transition: background-color 0.5s;
-  -moz-transition: background-color 0.5s;
-  -o-transition: background-color 0.5s;
-  transition: background-color 0.5s;
+  -webkit-transition: background-color 0.5s, border-color 0.5s;
+  -moz-transition: background-color 0.5s, border-color 0.5s;
+  -o-transition: background-color 0.5s, border-color 0.5s;
+  transition: background-color 0.5s, border-color 0.5s;
 }
 .btn-block {
   display: block;
   margin: 0 0 10px;
 }
 .btn.active {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #00b8af;
+  border-color: #00c0b7;
 }
 .btn:hover,
 .btn:focus {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: #99e0db;
+  border-color: #a2e8e3;
 }
 .btn:disabled {
   cursor: not-allowed;
@@ -130,7 +133,7 @@ form textarea {
 form input[type=text],
 form input[type=email],
 form textarea {
-  color: white;
+  color: #585858;
   font-family: 'Martel', Georgia, serif;
   font-weight: 200;
   font-size: 16px;
@@ -166,7 +169,7 @@ form .input-group {
 form .input-group {
   position: relative;
 
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(88, 88, 88, 0.4);
   border-style: solid;
   border-width: 0 0 1px 0;
 
@@ -179,7 +182,7 @@ form .input-group:after {
   left: 50%;
   right: 50%;
   height: 3px;
-  background: rgb(255, 255, 255);
+  background: #585858;
 
   -webkit-transition: left 0.3s, right 0.3s;
   -moz-transition: left 0.3s, right 0.3s;
@@ -204,7 +207,7 @@ form .input-group > label {
   right: 0;
 
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(88, 88, 88, 0.5);
   pointer-events: none;
 
   -webkit-transition: top 0.3s, font-size 0.3s, color 0.3s;
@@ -216,7 +219,7 @@ form .input-group.is-focused > label,
 form .input-group.is-dirty > label {
   top: 0;
   font-size: 12px;
-  color: rgb(255, 255, 255);
+  color: #585858;
 }
 
 /* input error message */
