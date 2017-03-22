@@ -6,9 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "version": "npm run buildcss && npm run buildjs && git add --all public/",
-    "buildcss": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css",
-    "buildjs": "uglifyjs public/js/script.js -c -m -p 2 -o public/js/script.min.js --source-map public/js/script.min.js.map --source-map-url script.min.js.map"
+    "version": "npm run build:css && npm run build:js && git add --all public/",
+    "build:css": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css",
+    "build:js": "uglifyjs public/js/script.js -c -m -p 2 -o public/js/script.min.js --source-map public/js/script.min.js.map --source-map-url script.min.js.map"
   },
   "repository": {
     "type": "git",
