@@ -13,9 +13,6 @@ const paths = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
 };
-const patterns = {
-  styles: '**/*.scss',
-};
 
 
 /**
@@ -29,7 +26,7 @@ gulp.task('build', ['build:styles']);
  * STYLES
  */
 gulp.task('build:styles', ['clean:styles'], function () {
-  return gulp.src(path.join(paths.src, patterns.styles))
+  return gulp.src(path.join(paths.src, 'styles', 'styles.scss'))
     .pipe(sourcemaps.init())
       .pipe(sass().on('error', sass.logError))
       .pipe(postcss([
@@ -53,5 +50,5 @@ gulp.task('clean:styles', function () {
  * WATCH
  */
 gulp.task('watch', function () {
-  gulp.watch(path.join(paths.src, patterns.styles), ['build:styles']);
+  gulp.watch(path.join(paths.src, '**', '*.scss'), ['build:styles']);
 });

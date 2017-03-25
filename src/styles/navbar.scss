@@ -1,0 +1,23 @@
+@import "./variables";
+
+nav {
+  margin: 15px 0;
+  text-align: center;
+
+  a.btn {
+    width: 24%;
+  }
+
+  span.more {
+    display: none;
+  }
+
+  @media (min-width: $max-width) {
+    a.btn {
+      width: 28%;
+    }
+    span.more {
+      display: inline;
+    }
+  }
+}

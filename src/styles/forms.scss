@@ -1,0 +1,132 @@
+@import "./variables.scss";
+
+/* inputs and textarea */
+form textarea {
+  resize: vertical;
+}
+form input[type=text],
+form input[type=email],
+form textarea {
+  color: $text-primary;
+  font-family: $font-sans-serif;
+  font-weight: $font-sans-serif-weight;
+  font-size: 16px;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: $base-padding 0 3px;
+
+  background: none;
+  border: none;
+  outline: none;
+}
+form input[name=_gotcha] {
+  display: none;
+}
+
+/* button */
+form .btn {
+  font-family: $font-serif;
+  font-weight: $font-sans-serif-weight;
+  font-size: 16px;
+  margin-top: 36px;
+}
+
+/* input group (with underline) */
+form p,
+form .input-group {
+  margin: 18px 0 0;
+}
+form .input-group {
+  position: relative;
+
+  border-color: $text-muted;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+
+  margin-bottom: 26px;
+}
+form .input-group:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  right: 50%;
+  height: 3px;
+  background: $text-primary;
+  transition: left $fast-transition, right $fast-transition;
+}
+form .input-group.is-invalid:after {
+  background: $brand-error;
+}
+form .input-group.is-invalid:after,
+form .input-group.is-focused:after {
+  left: 0;
+  right: 0;
+}
+
+/* floating label */
+form .input-group > label {
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  font-size: 16px;
+  color: $text-muted;
+  pointer-events: none;
+  transition: top $fast-transition, font-size $fast-transition, color $fast-transition;
+}
+form .input-group.is-focused > label,
+form .input-group.is-dirty > label {
+  top: 0;
+  font-size: 12px;
+  color: $text-primary;
+}
+
+/* input error message */
+form .input-group > .input-error-message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -26px;
+
+  font-size: 12px;
+  color: $brand-error;
+  opacity: 0;
+  transition: opacity $fast-transition;
+}
+form .input-group.is-invalid > .input-error-message {
+  opacity: 1;
+}
+
+/* is sending */
+form .btn > i.is-sending {
+  display: none;
+}
+form.is-sending .btn > i.is-sending {
+  display: inline-block;
+}
+form.is-sending .btn > i.not-sending {
+  display: none;
+}
+
+/* form submitted messages */
+form .form-submitted-message {
+  opacity: 0;
+  transition: opacity $fast-transition;
+}
+form.is-submitted .form-submitted-message,
+form.failed-submitting .form-submitted-message {
+  opacity: 1;
+}
+form .form-submitted-message > .failed-submitting {
+  display: none;
+}
+form.failed-submitting .form-submitted-message > .is-submitted {
+  display: none;
+}
+form.failed-submitting .form-submitted-message > .failed-submitting {
+  display: block;
+}
