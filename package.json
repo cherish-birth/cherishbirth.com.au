@@ -4,6 +4,7 @@
   "description": "Cherish Birth website",
   "private": true,
   "scripts": {
+    "gulp": "gulp",
     "start": "npm-run-all --parallel watch serve",
     "build": "gulp",
     "watch": "gulp watch",

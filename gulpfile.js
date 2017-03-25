@@ -14,6 +14,7 @@ const path = require('path');
 const paths = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
+  copies: ['fonts', 'images', 'vendor'],
 };
 
 
@@ -21,7 +22,10 @@ const paths = {
  * BUILD
  */
 gulp.task('default', ['build']);
-gulp.task('build', ['build:styles', 'build:scripts']);
+gulp.task('build', ['build:styles', 'build:scripts', 'build:copies']);
+gulp.task('clean', function () {
+  return del(paths.dist);
+});
 
 
 /**
@@ -71,9 +75,23 @@ gulp.task('clean:scripts', function () {
 
 
 /**
+ * COPIES
+ */
+gulp.task('build:copies', ['clean:copies'], function () {
+  paths.copies.forEach(copy =>
+    gulp.src(path.join(paths.src, copy, '**'))
+      .pipe(gulp.dest(path.join(paths.dist, copy))));
+});
+
+gulp.task('clean:copies', function () {
+  return del(paths.copies.map(copy => path.join(paths.dist, copy)));
+});
+
+
+/**
  * WATCH
  */
-gulp.task('watch', function () {
+gulp.task('watch', ['build'], function () {
   gulp.watch(path.join(paths.src, '**', '*.scss'), ['build:styles']);
   gulp.watch(path.join(paths.src, '**', '*.js'), ['build:scripts']);
 });
