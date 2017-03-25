@@ -11,10 +11,11 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const path = require('path');
 
+const isProduction = ['production', 'prod'].includes(process.env.NODE_ENV);
 const paths = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
-  copies: ['fonts', 'images', 'vendor'],
+  copies: ['images', ...(isProduction ? [] : ['fonts', 'vendor'])],
 };
 
 

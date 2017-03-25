@@ -6,7 +6,8 @@
   "scripts": {
     "gulp": "gulp",
     "start": "npm-run-all --parallel watch serve",
-    "build": "gulp",
+    "build": "NODE_ENV=production npm-run-all clean gulp",
+    "clean": "gulp clean",
     "watch": "gulp watch",
     "serve": "http-server dist -a 0.0.0.0 -p 8000"
   },
