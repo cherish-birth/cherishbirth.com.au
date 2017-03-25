@@ -1,4 +1,5 @@
 .idea
-.env
 sources
 node_modules
+*.log
+dist

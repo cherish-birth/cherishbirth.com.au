@@ -5,6 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "gulp": "gulp",
     "start": "nodemon index.js",
     "version": "npm run build:css && npm run build:js && git add --all public/",
     "build:css": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css",
@@ -16,5 +17,15 @@
   },
   "author": "Ben Booth <bkbooth@gmail.com>",
   "license": "ISC",
-  "homepage": "https://cherishbirth.com.au"
+  "homepage": "https://cherishbirth.com.au",
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "cssnano": "^3.10.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1"
+  }
 }
