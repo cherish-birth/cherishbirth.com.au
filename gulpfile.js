@@ -3,10 +3,12 @@ const cssnano = require('cssnano');
 const del = require('del');
 const fs = require('fs');
 const gulp = require('gulp');
+const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify');
 const path = require('path');
 
 const paths = {
@@ -19,7 +21,7 @@ const paths = {
  * BUILD
  */
 gulp.task('default', ['build']);
-gulp.task('build', ['build:styles']);
+gulp.task('build', ['build:styles', 'build:scripts']);
 
 
 /**
@@ -47,8 +49,31 @@ gulp.task('clean:styles', function () {
 
 
 /**
+ * SCRIPTS
+ */
+gulp.task('build:scripts', ['clean:scripts'], function () {
+  return gulp.src(path.join(paths.src, 'scripts', '**', '*.js'))
+    .pipe(sourcemaps.init())
+      .pipe(concat('scripts.js'))
+      .pipe(uglify())
+      .on('error', (err) => console.error(err))
+      .pipe(rename('scripts.min.js'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('clean:scripts', function () {
+  return del([
+    path.join(paths.dist, '**/*.js'),
+    path.join(paths.dist, '**/*.js.map'),
+  ]);
+});
+
+
+/**
  * WATCH
  */
 gulp.task('watch', function () {
   gulp.watch(path.join(paths.src, '**', '*.scss'), ['build:styles']);
+  gulp.watch(path.join(paths.src, '**', '*.js'), ['build:scripts']);
 });
