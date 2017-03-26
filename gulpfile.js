@@ -5,7 +5,6 @@ const gulp = require('gulp');
 const cachebust = require('gulp-cache-bust');
 const concat = require('gulp-concat');
 const htmlmin = require('gulp-htmlmin');
-const gulpif = require('gulp-if');
 const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
@@ -42,8 +41,8 @@ gulp.task('build:html', ['clean:html'], function() {
   buildHtml(isProduction, paths);
 
   return gulp.src(path.join(paths.dist, '**', '*.html'))
-    .pipe(gulpif(isProduction, cachebust()))
-    .pipe(gulpif(isProduction, htmlmin({ collapseWhitespace: true, removeComments: true })))
+    .pipe(cachebust())
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest(paths.dist));
 });
 
