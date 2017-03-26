@@ -6,9 +6,12 @@ const Handlebars = require('handlebars');
 module.exports = function(isProduction = false, paths) {
   setupHandlebars(Handlebars, paths);
 
-  const baseTitle = 'Cherish Birth';
-  const pages = require(path.join(paths.src, 'templates', 'pages.json'));
+  // Prevent pages.json caching in case it includes changes
+  const pagesFile = path.join(paths.src, 'templates', 'pages.json');
+  delete require.cache[require.resolve(pagesFile)];
+  const pages = require(pagesFile);
   const pagesDir = path.join(paths.src, 'templates', 'pages');
+  const baseTitle = 'Cherish Birth';
 
   // Build main pages
   pages.forEach(page => {
