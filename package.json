@@ -37,6 +37,7 @@
     "gulp-uglify": "^2.1.2",
     "handlebars": "^4.0.6",
     "mkdirp": "^0.5.1",
-    "npm-run-all": "^4.0.2"
+    "npm-run-all": "^4.0.2",
+    "pump": "^1.0.2"
   }
 }

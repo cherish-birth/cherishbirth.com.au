@@ -12,6 +12,7 @@ const server = require('gulp-server-livereload');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const path = require('path');
+const pump = require('pump');
 
 const buildHtml = require('./build-html');
 
@@ -49,10 +50,12 @@ gulp.task('clean', function () {
 gulp.task('build:html', ['clean:html'], function() {
   buildHtml(isProduction, paths);
 
-  return gulp.src(path.join(paths.dist, '**', '*.html'))
-    .pipe(cachebust())
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(gulp.dest(paths.dist));
+  return pump([
+    gulp.src(path.join(paths.dist, '**', '*.html')),
+    cachebust(),
+    htmlmin({ collapseWhitespace: true, removeComments: true }),
+    gulp.dest(paths.dist),
+  ]);
 });
 
 gulp.task('clean:html', function () {
@@ -64,16 +67,15 @@ gulp.task('clean:html', function () {
  * STYLES
  */
 gulp.task('build:styles', ['clean:styles'], function () {
-  return gulp.src(path.join(paths.src, 'styles', 'styles.scss'))
-    .pipe(sourcemaps.init())
-      .pipe(sass().on('error', sass.logError))
-      .pipe(postcss([
-        autoprefixer(),
-        cssnano(),
-      ]))
-      .pipe(rename('styles.min.css'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.dist));
+  return pump([
+    gulp.src(path.join(paths.src, 'styles', 'styles.scss')),
+    sourcemaps.init(),
+      sass(),
+      postcss([ autoprefixer(), cssnano() ]),
+      rename('styles.min.css'),
+    sourcemaps.write('.'),
+    gulp.dest(paths.dist),
+  ]);
 });
 
 gulp.task('clean:styles', function () {
@@ -88,14 +90,15 @@ gulp.task('clean:styles', function () {
  * SCRIPTS
  */
 gulp.task('build:scripts', ['clean:scripts'], function () {
-  return gulp.src(path.join(paths.src, 'scripts', '**', '*.js'))
-    .pipe(sourcemaps.init())
-      .pipe(concat('scripts.js'))
-      .pipe(uglify())
-      .on('error', (err) => console.error(err))
-      .pipe(rename('scripts.min.js'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.dist));
+  return pump([
+    gulp.src(path.join(paths.src, 'scripts', '**', '*.js')),
+    sourcemaps.init(),
+      concat('scripts.js'),
+      uglify(),
+      rename('scripts.min.js'),
+    sourcemaps.write('.'),
+    gulp.dest(paths.dist),
+  ]);
 });
 
 gulp.task('clean:scripts', function () {
@@ -110,9 +113,10 @@ gulp.task('clean:scripts', function () {
  * COPIES
  */
 gulp.task('build:copies', ['clean:copies'], function () {
-  paths.copies.forEach(copy =>
-    gulp.src(path.join(paths.src, copy, '**'))
-      .pipe(gulp.dest(path.join(paths.dist, copy))));
+  paths.copies.forEach(copy => pump([
+    gulp.src(path.join(paths.src, copy, '**')),
+    gulp.dest(path.join(paths.dist, copy)),
+  ]));
 });
 
 gulp.task('clean:copies', function () {
