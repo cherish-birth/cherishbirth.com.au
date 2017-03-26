@@ -1,15 +1,81 @@
 @import "./variables";
 
+$max-menu-width: 660px;
+
 nav {
   margin: 15px 0;
-  display: flex;
 
-  a.btn {
-    flex: 1;
-    text-align: center;
+  .menu {
+    display: flex;
+  }
+}
 
-    &:not(:first-child) {
-      margin-left: 5px;
+@media (max-width: $max-menu-width - 1) {
+  nav {
+    max-height: 48px;
+
+    .menu {
+      position: relative;
+      z-index: 10;
+      background: fade_out(white, 0.3);
+
+      flex-direction: column;
+      height: 100%;
+      max-height: 48px;
+      overflow-y: hidden;
+      transition: max-height $base-transition;
+
+      &.is-open {
+        max-height: 250px; // Big enough to cover all menu items
+
+        .caret {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    a.btn {
+      margin-bottom: 5px;
+      position: relative;
+
+      &.active {
+        order: -1;
+
+        .caret {
+          display: block;
+        }
+      }
+
+      transform: scale(0.97);
+      &:hover,
+      &:focus {
+        transform: scale(0.99);
+      }
+
+      .caret {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        transition: transform $base-transition;
+      }
+    }
+  }
+}
+
+@media (min-width: $max-menu-width) {
+  nav {
+    a.btn {
+      flex: 1;
+      text-align: center;
+
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
+
+      .caret {
+        display: none;
+      }
     }
   }
 }
