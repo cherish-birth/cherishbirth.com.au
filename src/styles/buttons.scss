@@ -1,0 +1,38 @@
+@import "./variables";
+
+.btn {
+  color: $text-alternative;
+  text-decoration: none;
+  opacity: 1;
+  cursor: pointer;
+
+  display: inline-block;
+  padding: 10px;
+  background: $brand-primary;
+  border: 1px solid lighten($brand-primary, 3%);
+  border-radius: 10px;
+  outline: none;
+
+  transition: background-color $base-transition, border-color $base-transition;
+
+  &.active {
+    background-color: $brand-secondary;
+    border-color: lighten($brand-secondary, 3%);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: lighten($brand-primary, 3%);
+    border-color: lighten($brand-primary, 6%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: #eee;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+.btn-block {
+  display: block;
+  margin: 0 0 10px;
+}
