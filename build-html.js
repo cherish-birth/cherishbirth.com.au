@@ -52,7 +52,8 @@ function writeFile(outputDir, html, fileName = 'index.html') {
 }
 
 function setupHandlebars(Handlebars, paths) {
-  // Add an 'equal' helper
+  Handlebars.registerHelper('concat', (...args) => args.slice(0, -1).join(''));
+  Handlebars.registerHelper('noDoubleSlash', (text) => text.replace(/(\/){2,}/g, '/'));
   Handlebars.registerHelper('equal', function equal(value1, value2, options) {
     const op = value1 === value2 ? 'fn' : 'inverse';
     return options[op](this);

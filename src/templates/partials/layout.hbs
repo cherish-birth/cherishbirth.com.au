@@ -27,7 +27,7 @@
     <link href="/styles.min.css" rel="stylesheet">
 
     {{#each pages}}
-      <link rel="prefetch" href="{{ this.url }}">
+      <link rel="prefetch" href="{{noDoubleSlash (concat this.url '/index.html') }}">
     {{/each}}
 
     {{#if isProduction}}
