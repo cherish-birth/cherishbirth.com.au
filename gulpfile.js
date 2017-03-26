@@ -1,7 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const del = require('del');
-const fs = require('fs');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
@@ -10,6 +9,8 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const path = require('path');
+
+const buildHtml = require('./build-html');
 
 const isProduction = ['production', 'prod'].includes(process.env.NODE_ENV);
 const paths = {
@@ -23,9 +24,21 @@ const paths = {
  * BUILD
  */
 gulp.task('default', ['build']);
-gulp.task('build', ['build:styles', 'build:scripts', 'build:copies']);
+gulp.task('build', ['build:html', 'build:styles', 'build:scripts', 'build:copies']);
 gulp.task('clean', function () {
   return del(paths.dist);
+});
+
+
+/**
+ * HTML
+ */
+gulp.task('build:html', ['clean:html'], function() {
+  return buildHtml(isProduction, paths);
+});
+
+gulp.task('clean:html', function () {
+  return del(path.join(paths.dist, '**', '*.html'));
 });
 
 
@@ -47,8 +60,8 @@ gulp.task('build:styles', ['clean:styles'], function () {
 
 gulp.task('clean:styles', function () {
   return del([
-    path.join(paths.dist, '**/*.css'),
-    path.join(paths.dist, '**/*.css.map'),
+    path.join(paths.dist, '**', '*.css'),
+    path.join(paths.dist, '**', '*.css.map'),
   ]);
 });
 
@@ -69,8 +82,8 @@ gulp.task('build:scripts', ['clean:scripts'], function () {
 
 gulp.task('clean:scripts', function () {
   return del([
-    path.join(paths.dist, '**/*.js'),
-    path.join(paths.dist, '**/*.js.map'),
+    path.join(paths.dist, '**', '*.js'),
+    path.join(paths.dist, '**', '*.js.map'),
   ]);
 });
 
@@ -93,6 +106,10 @@ gulp.task('clean:copies', function () {
  * WATCH
  */
 gulp.task('watch', ['build'], function () {
+  gulp.watch([
+    path.join(paths.src, '**', '*.hbs'),
+    path.join(paths.src, 'templates', 'pages.json'),
+  ], ['build:html']);
   gulp.watch(path.join(paths.src, '**', '*.scss'), ['build:styles']);
   gulp.watch(path.join(paths.src, '**', '*.js'), ['build:scripts']);
 });
