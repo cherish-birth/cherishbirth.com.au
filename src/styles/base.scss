@@ -25,8 +25,17 @@ body {
   }
 }
 
-.logo {
+img {
   max-width: 100%;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.logo, form {
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .content {
