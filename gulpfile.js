@@ -69,8 +69,8 @@ gulp.task('build:styles', ['clean:styles'], function () {
 
 gulp.task('clean:styles', function () {
   return del([
-    path.join(paths.dist, '**', '*.css'),
-    path.join(paths.dist, '**', '*.css.map'),
+    path.join(paths.dist, '**', '*.min.css'),
+    path.join(paths.dist, '**', '*.min.css.map'),
   ]);
 });
 
@@ -91,8 +91,8 @@ gulp.task('build:scripts', ['clean:scripts'], function () {
 
 gulp.task('clean:scripts', function () {
   return del([
-    path.join(paths.dist, '**', '*.js'),
-    path.join(paths.dist, '**', '*.js.map'),
+    path.join(paths.dist, '**', '*.min.js'),
+    path.join(paths.dist, '**', '*.min.js.map'),
   ]);
 });
 
