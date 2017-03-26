@@ -19,7 +19,7 @@ module.exports = function(isProduction = false, paths) {
 
     const pageTemplate = loadHandlebarsTemplate(path.join(pagesDir, `${page.template}.hbs`));
     const pageHtml = renderTemplate(pageTemplate, {
-      browserTitle: (page.browserTitle ? `${page.browserTitle} | ` : '') + baseTitle,
+      browserTitle: (page.browserTitle !== false ? `${page.pageTitle} | ` : '') + baseTitle,
       activeMenu: page.activeMenuId || null,
     });
     writeFile(path.join(paths.dist, page.url), pageHtml);

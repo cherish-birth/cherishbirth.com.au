@@ -2,22 +2,14 @@
 
 nav {
   margin: 15px 0;
-  text-align: center;
+  display: flex;
 
   a.btn {
-    width: 24%;
-  }
+    flex: 1;
+    text-align: center;
 
-  span.more {
-    display: none;
-  }
-
-  @media (min-width: $max-width) {
-    a.btn {
-      width: 28%;
-    }
-    span.more {
-      display: inline;
+    &:not(:first-child) {
+      margin-left: 5px;
     }
   }
 }
