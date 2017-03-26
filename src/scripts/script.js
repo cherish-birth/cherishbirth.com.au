@@ -8,7 +8,10 @@ function onReady($) {
   var propMethod = isLteIe9 ? 'attr' : 'prop';
 
   // Prevent navigating when clicking current link
-  $('a.btn.active').on('click', function preventClick(event) { event.preventDefault(); });
+  $('a.btn.active').on('click', function preventClick(event) {
+    event.preventDefault();
+    $('nav .menu').toggleClass('is-open');
+  });
 
   var form = $('form#contact');
   if (form.length) {

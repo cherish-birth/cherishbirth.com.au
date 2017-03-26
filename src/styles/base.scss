@@ -33,6 +33,11 @@ img {
   text-align: center !important;
 }
 
+.text-highlight {
+  font-size: 115%;
+  color: $brand-secondary;
+}
+
 .logo, form {
   max-width: 520px;
   margin: 0 auto;
@@ -88,6 +93,10 @@ a {
 /**
  * LISTS
  */
+ul {
+  padding-left: 30px;
+}
+
 ol.circles {
   list-style-type: none;
   margin: $base-margin 0 0;
@@ -108,7 +117,7 @@ ol.circles {
       display: inline-block;
       width: $circle-size;
       height: $circle-size;
-      line-height: $circle-size - 2;
+      line-height: $circle-size;
       text-indent: 0;
       text-align: center;
       margin-right: 8px;

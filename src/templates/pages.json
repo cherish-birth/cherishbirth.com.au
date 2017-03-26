@@ -13,6 +13,12 @@
     "activeMenuId": "doula"
   },
   {
+    "url": "/packages",
+    "template": "packages",
+    "pageTitle": "Packages",
+    "activeMenuId": "packages"
+  },
+  {
     "url": "/about-me",
     "template": "about",
     "pageTitle": "About Me",

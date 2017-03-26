@@ -1,7 +1,10 @@
 <nav>
-  {{#each pages as |page index|}}
-    <a class="btn {{#equal page.activeMenuId ../activeMenu}}active{{/equal}}" href="{{ page.url }}">
-      {{{ page.pageTitle }}}
-    </a>
-  {{/each}}
+  <div class="menu">
+    {{#each pages as |page index|}}
+      <a class="btn {{#equal page.activeMenuId ../activeMenu}}active{{/equal}}" href="{{ page.url }}">
+        {{{ page.pageTitle }}}
+        <span class="caret"><i class="fa fa-caret-down fa-2x"></i></span>
+      </a>
+    {{/each}}
+  </div>
 </nav>
