@@ -2,7 +2,10 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const del = require('del');
 const gulp = require('gulp');
+const cachebust = require('gulp-cache-bust');
 const concat = require('gulp-concat');
+const htmlmin = require('gulp-htmlmin');
+const gulpif = require('gulp-if');
 const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
@@ -24,7 +27,9 @@ const paths = {
  * BUILD
  */
 gulp.task('default', ['build']);
-gulp.task('build', ['build:html', 'build:styles', 'build:scripts', 'build:copies']);
+gulp.task('build', ['build:styles', 'build:scripts', 'build:copies'], function () {
+  return gulp.run('build:html');
+});
 gulp.task('clean', function () {
   return del(paths.dist);
 });
@@ -34,7 +39,12 @@ gulp.task('clean', function () {
  * HTML
  */
 gulp.task('build:html', ['clean:html'], function() {
-  return buildHtml(isProduction, paths);
+  buildHtml(isProduction, paths);
+
+  return gulp.src(path.join(paths.dist, '**', '*.html'))
+    .pipe(gulpif(isProduction, cachebust()))
+    .pipe(gulpif(isProduction, htmlmin({ collapseWhitespace: true, removeComments: true })))
+    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('clean:html', function () {
