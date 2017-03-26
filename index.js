@@ -1,12 +1,12 @@
 // Load environment from .env file
 require('dotenv').config();
 
-var path = require('path');
-var http = require('http');
-var express = require('express');
-var morgan = require('morgan');
-var hbs = require('express-hbs');
-var md5File = require('md5-file');
+const path = require('path');
+const http = require('http');
+const express = require('express');
+const morgan = require('morgan');
+const hbs = require('express-hbs');
+const md5File = require('md5-file');
 
 // Add a Handlebars 'equal' helper
 hbs.registerHelper('equal', function equal(value1, value2, options) {
@@ -16,7 +16,7 @@ hbs.registerHelper('equal', function equal(value1, value2, options) {
 });
 
 // Setup the express app
-var app = express();
+const app = express();
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('port', process.env.PORT || 8000);
@@ -36,11 +36,11 @@ app.locals.jsFile = app.locals.env === 'production' ? '/js/script.min.js' : '/js
 app.locals.jsHash = md5File.sync(path.join(__dirname, '/public', app.locals.jsFile));
 
 // Setup the express router
-var router = express.Router();
+const router = express.Router();
 app.use('/', router);
 
 // Add the page routes
-var baseTitle = 'Cherish Birth';
+const baseTitle = 'Cherish Birth';
 app.locals.pages = require('./pages.json');
 app.locals.pages.forEach(page => {
   if (!page.url || !page.template) return;
@@ -67,7 +67,7 @@ app.use((req, res, next) => res.status(404).render('404', {
 }));
 
 // Create and start the http server
-var server = http.createServer(app);
+const server = http.createServer(app);
 server.listen(app.get('port'), () => {
   console.log(`Serving on port ${app.get('port')}`);
 });

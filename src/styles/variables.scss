@@ -1,0 +1,37 @@
+/**
+ * COLOURS
+ */
+$brand-primary: #8ad1cc;
+$brand-secondary: #00b8af;
+$brand-error: #ad1f1f;
+$background-primary: #ffffff;
+$background-secondary: #f2f2f2;
+$text-primary: #585858;
+$text-alternative: #ffffff;
+$text-muted: fade_out($text-primary, 0.5);
+
+
+/**
+ * FONTS
+ */
+$font-serif: 'Martel', Georgia, serif;
+$font-serif-weight: 200;
+$font-sans-serif: 'Source Sans Pro', Verdana, Geneva, sans-serif;
+$font-sans-serif-weight: 400;
+$base-font-size: 14px;
+
+
+/**
+ * SIZING
+ */
+$max-width: 600px;
+$base-margin: 25px;
+$base-padding: 20px;
+
+
+/**
+ * TRANSITIONS
+ */
+$fast-transition: 0.3s;
+$base-transition: 0.5s;
+$slow-transition: 0.8s;

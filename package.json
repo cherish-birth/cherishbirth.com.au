@@ -3,30 +3,41 @@
   "version": "1.4.5",
   "description": "Cherish Birth website",
   "private": true,
-  "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "version": "npm run buildcss && npm run buildjs && git add --all public/",
-    "buildcss": "cleancss --source-map -r public/css/ -o public/css/style.min.css public/css/style.css",
-    "buildjs": "uglifyjs public/js/script.js -c -m -p 2 -o public/js/script.min.js --source-map public/js/script.min.js.map --source-map-url script.min.js.map"
+    "gulp": "gulp",
+    "start": "npm-run-all --parallel watch serve",
+    "build": "NODE_ENV=production npm-run-all clean gulp",
+    "clean": "gulp clean",
+    "watch": "gulp watch",
+    "serve": "http-server dist -a 0.0.0.0 -p 8000",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build && echo 'cherishbirth.com.au' > dist/CNAME"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/bkbooth/cherish-birth.git"
+    "url": "git+https://github.com/bkbooth/cherish-birth.git"
   },
   "author": "Ben Booth <bkbooth@gmail.com>",
   "license": "ISC",
   "homepage": "https://cherishbirth.com.au",
-  "dependencies": {
-    "dotenv": "2.0.0",
-    "express": "4.13.4",
-    "express-hbs": "1.0.1",
-    "md5-file": "3.1.0",
-    "morgan": "1.7.0",
-    "nodemon": "1.9.2"
-  },
   "devDependencies": {
-    "clean-css": "3.4.17",
-    "uglify-js": "2.6.2"
+    "autoprefixer": "^6.7.7",
+    "cssnano": "^3.10.0",
+    "del": "^2.2.2",
+    "gh-pages": "^0.12.0",
+    "gulp": "^3.9.1",
+    "gulp-cache-bust": "^1.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.2",
+    "handlebars": "^4.0.6",
+    "http-server": "^0.9.0",
+    "mkdirp": "^0.5.1",
+    "npm-run-all": "^4.0.2"
   }
 }

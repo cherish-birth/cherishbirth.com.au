@@ -11,28 +11,28 @@
       With you from pregnancy to parenthood |
       Illawarra Birth Doula
     </title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
 
     <!-- Vendor stylesheets -->
-    {{#equal env 'production'}}
+    {{#if isProduction}}
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Martel:200,700" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
     {{else}}
       <link href="/vendor/font-awesome.css" rel="stylesheet">
       <link href="/vendor/google-fonts.css" rel="stylesheet">
-    {{/equal}}
+    {{/if}}
 
     <!-- Site stylesheet -->
-    <link href="{{ cssFile }}?hash={{ cssHash }}" rel="stylesheet">
+    <link href="/styles.min.css" rel="stylesheet">
 
     {{#each pages}}
       <link rel="prefetch" href="{{ this.url }}">
     {{/each}}
 
-    {{#equal env 'production'}}
+    {{#if isProduction}}
       {{> analytics }}
-    {{/equal}}
+    {{/if}}
   </head>
   <body>
     <div class="container">
@@ -41,14 +41,14 @@
       {{> menu }}
 
       <div class="content">
-        {{{ body }}}
+        {{> content }}
       </div>
 
       {{> links }}
     </div>
 
     <!-- Vendor scripts -->
-    {{#equal env 'production'}}
+    {{#if isProduction}}
       <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <![endif]-->
@@ -57,9 +57,9 @@
       <!-- <![endif]-->
     {{else}}
       <script src="/vendor/zepto.js"></script>
-    {{/equal}}
+    {{/if}}
 
     <!-- Site scripts -->
-    <script src="{{ jsFile }}?hash={{ jsHash }}"></script>
+    <script src="/scripts.min.js"></script>
   </body>
 </html>
