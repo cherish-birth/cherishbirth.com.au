@@ -8,6 +8,7 @@ const htmlmin = require('gulp-htmlmin');
 const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
+const server = require('gulp-server-livereload');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const path = require('path');
@@ -28,6 +29,14 @@ const paths = {
 gulp.task('default', ['build']);
 gulp.task('build', ['build:styles', 'build:scripts', 'build:copies'], function () {
   return gulp.run('build:html');
+});
+gulp.task('server', function () {
+  return gulp.src(paths.dist)
+    .pipe(server({
+      host: '0.0.0.0',
+      post: '8000',
+      livereload: true,
+    }));
 });
 gulp.task('clean', function () {
   return del(paths.dist);
@@ -69,8 +78,8 @@ gulp.task('build:styles', ['clean:styles'], function () {
 
 gulp.task('clean:styles', function () {
   return del([
-    path.join(paths.dist, '**', '*.css'),
-    path.join(paths.dist, '**', '*.css.map'),
+    path.join(paths.dist, '**', '*.min.css'),
+    path.join(paths.dist, '**', '*.min.css.map'),
   ]);
 });
 
@@ -91,8 +100,8 @@ gulp.task('build:scripts', ['clean:scripts'], function () {
 
 gulp.task('clean:scripts', function () {
   return del([
-    path.join(paths.dist, '**', '*.js'),
-    path.join(paths.dist, '**', '*.js.map'),
+    path.join(paths.dist, '**', '*.min.js'),
+    path.join(paths.dist, '**', '*.min.js.map'),
   ]);
 });
 

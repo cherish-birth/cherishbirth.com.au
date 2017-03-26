@@ -1,9 +1,7 @@
 <nav>
   {{#each pages as |page index|}}
-    {{#if page.showInMenu}}
-      <a class="btn {{#equal page.activeMenuId ../activeMenu}}active{{/equal}}" href="{{ page.url }}">
-        {{{ page.menuTitle }}}
-      </a>
-    {{/if}}
+    <a class="btn {{#equal page.activeMenuId ../activeMenu}}active{{/equal}}" href="{{ page.url }}">
+      {{{ page.pageTitle }}}
+    </a>
   {{/each}}
 </nav>
