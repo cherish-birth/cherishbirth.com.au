@@ -27,7 +27,7 @@
     <link href="/styles.min.css" rel="stylesheet">
 
     {{#each pages}}
-      <link rel="prefetch" href="{{ this.url }}">
+      <link rel="prefetch" href="{{noDoubleSlash (concat this.url '/index.html') }}">
     {{/each}}
 
     {{#if isProduction}}
@@ -36,7 +36,9 @@
   </head>
   <body>
     <div class="container">
-      <img src="/images/cherish-birth-logo.gif" class="logo">
+      <div class="logo">
+        <img src="/images/cherish-birth-logo.gif">
+      </div>
 
       {{> menu }}
 

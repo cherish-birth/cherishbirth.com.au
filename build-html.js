@@ -19,7 +19,7 @@ module.exports = function(isProduction = false, paths) {
 
     const pageTemplate = loadHandlebarsTemplate(path.join(pagesDir, `${page.template}.hbs`));
     const pageHtml = renderTemplate(pageTemplate, {
-      browserTitle: (page.browserTitle ? `${page.browserTitle} | ` : '') + baseTitle,
+      browserTitle: (page.browserTitle !== false ? `${page.pageTitle} | ` : '') + baseTitle,
       activeMenu: page.activeMenuId || null,
     });
     writeFile(path.join(paths.dist, page.url), pageHtml);
@@ -52,7 +52,8 @@ function writeFile(outputDir, html, fileName = 'index.html') {
 }
 
 function setupHandlebars(Handlebars, paths) {
-  // Add an 'equal' helper
+  Handlebars.registerHelper('concat', (...args) => args.slice(0, -1).join(''));
+  Handlebars.registerHelper('noDoubleSlash', (text) => text.replace(/(\/){2,}/g, '/'));
   Handlebars.registerHelper('equal', function equal(value1, value2, options) {
     const op = value1 === value2 ? 'fn' : 'inverse';
     return options[op](this);
