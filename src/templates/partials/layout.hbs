@@ -33,6 +33,9 @@
     {{#if isProduction}}
       {{> analytics }}
     {{/if}}
+
+    <!-- Polyfills -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,Promise,Element.prototype.classList,Array.prototype.forEach|reduce&flags=gated"></script>
   </head>
   <body>
     <div class="container">
@@ -48,18 +51,6 @@
 
       {{> links }}
     </div>
-
-    <!-- Vendor scripts -->
-    {{#if isProduction}}
-      <!--[if lte IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <![endif]-->
-      <!--[if !IE]> -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script>
-      <!-- <![endif]-->
-    {{else}}
-      <script src="/vendor/zepto.js"></script>
-    {{/if}}
 
     <!-- Site scripts -->
     <script src="/scripts.min.js"></script>

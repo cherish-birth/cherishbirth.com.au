@@ -1,22 +1,26 @@
-/**
- * Bootstrap application
- *
- * @param {function} $
- */
-function onReady($) {
-  var isLteIe9 = $('html').hasClass('lte-ie9');
-  var propMethod = isLteIe9 ? 'attr' : 'prop';
+function onReady() {
+  const isLteIe9 = document.querySelector('html').classList.contains('lte-ie9');
 
-  // Prevent navigating when clicking current link
-  $('a.btn.active').on('click', function preventClick(event) {
+  const activeButton = document.querySelector('a.btn.active');
+  if (activeButton) {
+    activeButton.addEventListener('click', handleActiveButtonClick);
+  }
+
+  const form = /** @type {HTMLFormElement} **/ document.querySelector('form#contact');
+  if (form) {
+    form.addEventListener('submit', onSubmit);
+    setupInputListeners(form);
+  }
+
+  /**
+   * Prevent navigation and toggle menu 'is-open' class
+   *
+   * @param {MouseEvent} event
+   */
+  function handleActiveButtonClick(event) {
     event.preventDefault();
-    $('nav .menu').toggleClass('is-open');
-  });
 
-  var form = $('form#contact');
-  if (form.length) {
-    form.on('submit', onSubmit);
-    setupInputListeners(form.first());
+    document.querySelector('nav .menu').classList.toggle('is-open');
   }
 
   /**
@@ -25,8 +29,8 @@ function onReady($) {
    * @param {Event} event
    */
   function onSubmit(event) {
-    var form = /** @type {HTMLFormElement} */ event.target;
-    var fields = ['name', 'email', 'phoneNumber', 'message', '_cc', '_subject', '_gotcha'];
+    const form = /** @type {HTMLFormElement} **/ event.target;
+    const fields = ['name', 'email', 'phoneNumber', 'message', '_cc', '_subject', '_gotcha'];
     if (!validateInputs(form, fields)) {
       return event.preventDefault();
     }
@@ -38,56 +42,32 @@ function onReady($) {
       event.preventDefault();
     }
 
-    var formData = fields.reduce(function _reduce(data, field) {
-      data[field] = form[field].value || null;
+    const formData = fields.reduce((data, field) => {
+      if (form[field]) {
+        data[field] = form[field].value || void 0;
+      }
       return data;
     }, {});
 
-    $.ajax({
-      url: form.action,
-      type: form.method,
-      data: formData,
-      dataType: 'json',
-      success: onSubmitSuccess.bind(null, form),
-      error: onSubmitError.bind(null, form),
-      complete: onSubmitComplete.bind(null, form),
-    });
+    fetch(form.action, {
+      method: form.method,
+      body: JSON.stringify(formData),
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then((response) => response.ok ? Promise.resolve() : Promise.reject())
+      .then(() => form.classList.add('is-submitted'))
+      .catch(() => {
+        form.classList.add('failed-submitting');
+        form.querySelector('button[type=submit]').removeAttribute('disabled');
+      })
+      .then(() => form.classList.remove('is-sending'));
 
-    $(form)
-      .addClass('is-sending')
-      .removeClass('is-submitted failed-submitting')
-      .find('button[type=submit]')
-      [propMethod]('disabled', true);
-  }
-
-  /**
-   * Successfully submitted contact form
-   *
-   * @param {HTMLFormElement} form
-   */
-  function onSubmitSuccess(form) {
-    $(form).addClass('is-submitted');
-  }
-
-  /**
-   * Failed submitting contact form
-   *
-   * @param {HTMLFormElement} form
-   */
-  function onSubmitError(form) {
-    $(form)
-      .addClass('failed-submitting')
-      .find('button[type=submit]')
-      [propMethod]('disabled', false);
-  }
-
-  /**
-   * Completed (success or fail) submitting contact form
-   *
-   * @param {HTMLFormElement} form
-   */
-  function onSubmitComplete(form) {
-    $(form).removeClass('is-sending');
+    form.classList.add('is-sending');
+    form.classList.remove('is-submitted', 'failed-submitting');
+    form.querySelector('button[type=submit]').setAttribute('disabled', '');
   }
 
   /**
@@ -99,13 +79,13 @@ function onReady($) {
    * @returns {boolean}
    */
   function validateInputs(form, fields) {
-    var valid = true;
+    let valid = true;
 
     // Validate 'required' fields
-    fields.forEach(function _forEach(field) {
-      if ($(form[field])[propMethod]('required') && !form[field].value) {
+    fields.forEach((field) => {
+      if (form[field] && form[field].hasAttribute('required') && !form[field].value) {
         valid = false;
-        $(form[field]).parent().addClass('is-invalid');
+        form[field].parentNode.classList.add('is-invalid');
       }
     });
 
@@ -118,44 +98,24 @@ function onReady($) {
    * @param {HTMLFormElement} form
    */
   function setupInputListeners(form) {
-    $(form)
-      .find('input[type=text], input[type=email], textarea')
-      .each(function _each(_, input) {
-        var $input = $(input);
-        var $parent = $input.parent();
+    const inputElements = form.querySelectorAll('input[type=text], input[type=email], textarea');
+    inputElements.forEach((inputElement) => {
+      const parentElement = inputElement.parentNode;
 
-        $input.on('focus', onInputFocus);
-        $input.on('blur', onInputBlur);
-        $input.on('input', onInputChange);
+      inputElement.addEventListener('focus', (event) => event.target.parentNode.classList.add('is-focused'));
+      inputElement.addEventListener('blur', (event) => event.target.parentNode.classList.remove('is-focused'));
+      inputElement.addEventListener('input', onInputChange);
 
-        // Firefox doesn't fire initial 'focus' event
-        if (input === document.activeElement) {
-          $parent.addClass('is-focused');
-        }
+      // Firefox doesn't fire initial 'focus' event
+      if (inputElement === document.activeElement) {
+        parentElement.classList.add('is-focused');
+      }
 
-        // When navigating back/forward, form inputs might already have a value
-        if (input.value) {
-          $parent.addClass('is-dirty');
-        }
-      });
-  }
-
-  /**
-   * Add the 'is-focused' class on focus
-   *
-   * @param {FocusEvent} event
-   */
-  function onInputFocus(event) {
-    $(event.target).parent().addClass('is-focused');
-  }
-
-  /**
-   * Remove the 'is-focused' class on blur
-   *
-   * @param {FocusEvent} event
-   */
-  function onInputBlur(event) {
-    $(event.target).parent().removeClass('is-focused');
+      // When navigating back/forward, form inputs might already have a value
+      if (inputElement.value) {
+        parentElement.classList.add('is-dirty');
+      }
+    });
   }
 
   /**
@@ -164,35 +124,29 @@ function onReady($) {
    * @param {InputEvent} event
    */
   function onInputChange(event) {
-    var input = event.target;
-    var $parent = $(input).parent();
+    const inputElement = event.target;
+    const parentElement = inputElement.parentNode;
 
     // Add/remove the 'is-dirty' class
-    if (input.value && !$parent.hasClass('is-dirty')) {
-      $parent.addClass('is-dirty');
-    } else if (!input.value && $parent.hasClass('is-dirty')) {
-      $parent.removeClass('is-dirty');
-    }
+    const action = inputElement.value ? 'add' : 'remove';
+    parentElement.classList[action]('is-dirty');
 
     // Remove the 'is-invalid' class
-    if (input.value && $parent.hasClass('is-dirty')) {
-      $parent.removeClass('is-invalid');
+    if (inputElement.value && parentElement.classList.contains('is-dirty')) {
+      parentElement.classList.remove('is-invalid');
     }
 
     // If phone number entered, remove 'required' from email field
-    var $emailInput = $(input.form.email);
-    var $emailParent = $emailInput.parent();
-    if (input.name === 'phoneNumber') {
-      $emailInput[propMethod]('required', !input.value);
-      if (!$emailInput[propMethod]('required') && $emailParent.hasClass('is-invalid')) {
-        $emailParent.removeClass('is-invalid');
+    const emailElement = form.email;
+    const emailParent = emailElement.parentNode;
+    if (inputElement.name === 'phoneNumber') {
+      const action = inputElement.value ? 'removeAttribute' : 'setAttribute';
+      emailElement[action]('required', '');
+      if (!emailElement.hasAttribute('required') && emailParent.classList.contains('is-invalid')) {
+        emailParent.classList.remove('is-invalid');
       }
     }
   }
 }
 
-if (window.Zepto) {
-  Zepto(onReady);
-} else {
-  jQuery(onReady);
-}
+document.addEventListener('DOMContentLoaded', onReady);

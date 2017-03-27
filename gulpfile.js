@@ -2,6 +2,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const del = require('del');
 const gulp = require('gulp');
+const babel = require('gulp-babel');
 const cachebust = require('gulp-cache-bust');
 const concat = require('gulp-concat');
 const htmlmin = require('gulp-htmlmin');
@@ -93,6 +94,7 @@ gulp.task('build:scripts', ['clean:scripts'], function () {
   return pump([
     gulp.src(path.join(paths.src, 'scripts', '**', '*.js')),
     sourcemaps.init(),
+      babel({ presets: ['es2015'] }),
       concat('scripts.js'),
       uglify(),
       rename('scripts.min.js'),
