@@ -29,8 +29,8 @@
 
   &:disabled {
     cursor: not-allowed;
-    color: #eee;
-    background: rgba(255, 255, 255, 0.1);
+    color: darken($text-alternative, 10%);
+    background: darken($brand-secondary, 10%);
     transform: scale(1);
   }
 }
