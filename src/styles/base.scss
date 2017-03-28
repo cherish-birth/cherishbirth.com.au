@@ -32,10 +32,14 @@ img {
 .text-center {
   text-align: center !important;
 }
-
 .text-highlight {
-  font-size: 115%;
   color: $brand-secondary;
+}
+.text-muted {
+  color: $text-muted;
+}
+.text-lg {
+  font-size: 115%;
 }
 
 .logo, form {
