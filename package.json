@@ -1,5 +1,5 @@
 {
-  "name": "cherish-birth",
+  "name": "cherishbirth.com.au",
   "version": "2.3.0",
   "description": "Cherish Birth website",
   "private": true,
@@ -16,9 +16,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bkbooth/cherish-birth.git"
+    "url": "git@github.com:cherish-birth/cherishbirth.com.au.git"
   },
-  "author": "Ben Booth <bkbooth@gmail.com>",
+  "author": "Ben Booth <bkbooth@gmail.com> (https://benbooth.dev)",
   "license": "ISC",
   "homepage": "https://cherishbirth.com.au",
   "devDependencies": {
