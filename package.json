@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git@github.com:cherish-birth/cherishbirth.com.au.git"
   },
-  "author": "Ben Booth <bkbooth@gmail.com>",
+  "author": "Ben Booth <bkbooth@gmail.com> (https://benbooth.dev)",
   "license": "ISC",
   "homepage": "https://cherishbirth.com.au",
   "devDependencies": {
