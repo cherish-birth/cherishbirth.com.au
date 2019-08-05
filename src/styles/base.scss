@@ -11,7 +11,7 @@ body {
   background: linear-gradient(135deg, $background-primary 0%, $background-primary 60%, $background-secondary 100%);
   color: $text-primary;
   font-family: $font-serif;
-  font-weight: $font-sans-serif-weight;
+  font-weight: $font-serif-weight;
   font-size: $base-font-size;
 }
 
@@ -40,6 +40,14 @@ img {
 }
 .text-lg {
   font-size: 115%;
+}
+
+.badge {
+  background: fade_out($text-primary, 0.9);
+  padding: 0 4px;
+  margin: 0 5px;
+  border-radius: 4px;
+  font-size: 90%;
 }
 
 .logo, form {
@@ -135,4 +143,8 @@ ol.circles {
       transform: scale(1);
     }
   }
+}
+
+.fa-ul .fa-li {
+  margin-top: 2px;
 }
