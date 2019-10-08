@@ -26,7 +26,7 @@ nav {
       transition: max-height $base-transition;
 
       &.is-open {
-        max-height: 250px; // Big enough to cover all menu items
+        max-height: 260px; // Big enough to cover all menu items
 
         .caret {
           transform: rotate(180deg);
@@ -37,6 +37,7 @@ nav {
     a.btn {
       margin-bottom: 5px;
       position: relative;
+      font-size: $font-size-base;
 
       &.active {
         order: -1;
@@ -67,6 +68,7 @@ nav {
   nav {
     a.btn {
       flex: 1;
+      font-size: $font-size-sm;
       text-align: center;
 
       &:not(:first-child) {

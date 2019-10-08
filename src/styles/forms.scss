@@ -1,5 +1,10 @@
 @import "./variables.scss";
 
+form {
+  max-width: 560px;
+  margin: 40px auto;
+}
+
 /* inputs and textarea */
 form textarea {
   resize: vertical;
@@ -9,12 +14,12 @@ form input[type=email],
 form textarea {
   color: $text-primary;
   font-family: $font-sans-serif;
-  font-weight: $font-sans-serif-weight;
-  font-size: 16px;
+  font-weight: $font-sans-serif-regular;
+  font-size: $font-size-lg;
 
   box-sizing: border-box;
   width: 100%;
-  padding: $base-padding 0 3px;
+  padding: 26px 0 3px;
 
   background: none;
   border: none;
@@ -27,8 +32,8 @@ form input[name=_gotcha] {
 /* button */
 form .btn {
   font-family: $font-serif;
-  font-weight: $font-sans-serif-weight;
-  font-size: 16px;
+  font-weight: $font-sans-serif-regular;
+  font-size: $font-size-lg;
   margin-top: 36px;
 }
 
@@ -68,12 +73,12 @@ form .input-group.is-focused:after {
 /* floating label */
 form .input-group > label {
   position: absolute;
-  top: 20px;
+  top: 26px;
   bottom: 0;
   left: 0;
   right: 0;
 
-  font-size: 16px;
+  font-size: $font-size-lg;
   color: $text-muted;
   pointer-events: none;
   transition: top $fast-transition, font-size $fast-transition, color $fast-transition;
@@ -81,7 +86,7 @@ form .input-group > label {
 form .input-group.is-focused > label,
 form .input-group.is-dirty > label {
   top: 0;
-  font-size: 12px;
+  font-size: $font-size-sm;
   color: $text-primary;
 }
 
@@ -92,7 +97,7 @@ form .input-group > .input-error-message {
   right: 0;
   bottom: -26px;
 
-  font-size: 12px;
+  font-size: $font-size-sm;
   color: $brand-error;
   opacity: 0;
   transition: opacity $fast-transition;

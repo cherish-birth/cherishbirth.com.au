@@ -104,6 +104,7 @@ const serve = () =>
       host: '0.0.0.0',
       post: '8000',
       livereload: true,
+      fallback: '404.html',
     })
   )
 

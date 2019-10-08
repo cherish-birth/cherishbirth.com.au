@@ -11,8 +11,12 @@ body {
   background: linear-gradient(135deg, $background-primary 0%, $background-primary 60%, $background-secondary 100%);
   color: $text-primary;
   font-family: $font-serif;
-  font-weight: $font-serif-weight;
-  font-size: $base-font-size;
+  font-weight: $font-serif-regular;
+  font-size: $font-size-base;
+}
+
+b, strong {
+  font-weight: $font-serif-strong;
 }
 
 .container {
@@ -39,28 +43,25 @@ img {
   color: $text-muted;
 }
 .text-lg {
-  font-size: 115%;
+  font-size: 1.15em;
 }
 
 .badge {
-  background: fade_out($text-primary, 0.9);
-  padding: 0 4px;
+  background: fade_out($text-primary, 0.95);
+  padding: 1px 10px;
   margin: 0 5px;
-  border-radius: 4px;
-  font-size: 90%;
+  border-radius: 5px;
+  font-size: 0.9em;
 }
 
-.logo, form {
+.logo {
   max-width: 560px;
-  margin: 0 auto;
+  margin: 40px auto;
+  padding: 0 30px;
 }
 
 .content {
   margin: 40px 0;
-
-  p {
-    text-align: justify;
-  }
 }
 
 
@@ -69,16 +70,22 @@ img {
  */
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-sans-serif;
-  font-weight: $font-sans-serif-weight;
+  font-weight: $font-sans-serif-regular;
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
 
 h1, h2, h3, h4, h5, h6, p {
   margin: $base-margin 0 0;
 }
 h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
-  margin-top: 10px;
+  margin-top: $base-margin / 2;
 }
 
 
