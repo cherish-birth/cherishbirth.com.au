@@ -19,9 +19,9 @@
     "activeMenuId": "packages"
   },
   {
-    "url": "/about-me",
+    "url": "/about",
     "template": "about",
-    "pageTitle": "About Me",
+    "pageTitle": "About Alyssa",
     "activeMenuId": "about"
   },
   {
