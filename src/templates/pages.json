@@ -23,11 +23,5 @@
     "template": "about",
     "pageTitle": "About Alyssa",
     "activeMenuId": "about"
-  },
-  {
-    "url": "/contact",
-    "template": "contact",
-    "pageTitle": "Contact",
-    "activeMenuId": "contact"
   }
 ]
