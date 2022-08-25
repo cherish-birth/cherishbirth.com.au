@@ -155,3 +155,22 @@ ol.circles {
 .fa-ul .fa-li {
   margin-top: 2px;
 }
+
+.image-aside {
+  display: flex;
+  align-items: flex-start;
+
+  > :first-child {
+    flex: 1;
+
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  > img {
+    width: 280px;
+    height: auto;
+    margin-left: 20px;
+  }
+}
