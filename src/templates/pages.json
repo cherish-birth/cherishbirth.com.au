@@ -21,7 +21,7 @@
   {
     "url": "/about",
     "template": "about",
-    "pageTitle": "About Alyssa",
+    "pageTitle": "About me",
     "activeMenuId": "about"
   }
 ]
