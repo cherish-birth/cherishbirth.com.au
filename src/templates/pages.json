@@ -13,10 +13,10 @@
     "activeMenuId": "doula"
   },
   {
-    "url": "/packages",
-    "template": "packages",
-    "pageTitle": "Packages",
-    "activeMenuId": "packages"
+    "url": "/services",
+    "template": "services",
+    "pageTitle": "Services",
+    "activeMenuId": "services"
   },
   {
     "url": "/about",
