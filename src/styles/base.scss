@@ -38,6 +38,13 @@ strong {
 
 img {
   max-width: 100%;
+
+  &.image-rounded {
+    border-radius: 10px;
+  }
+}
+p + img {
+  margin-top: $base-margin;
 }
 
 .text-center {
@@ -193,7 +200,7 @@ ol.circles {
   align-items: flex-start;
 
   &:not(:first-child) {
-    margin-top: 30px;
+    margin-top: $base-margin;
   }
 
   .image-aside__content {
@@ -207,7 +214,6 @@ ol.circles {
   .image-aside__image {
     width: 280px;
     height: auto;
-    border-radius: 10px;
   }
 
   &--image-right .image-aside__image {
