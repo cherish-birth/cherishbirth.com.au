@@ -192,6 +192,10 @@ ol.circles {
   display: flex;
   align-items: flex-start;
 
+  &:not(:first-child) {
+    margin-top: 30px;
+  }
+
   .image-aside__content {
     flex: 1;
 
