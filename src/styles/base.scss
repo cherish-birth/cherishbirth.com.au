@@ -222,4 +222,15 @@ ol.circles {
   &--image-left .image-aside__image {
     margin-right: 20px;
   }
+
+  @media (max-width: ($desktop-width - 1)) {
+    flex-direction: column;
+
+    &--image-right .image-aside__image {
+      margin: $base-margin auto 0;
+    }
+    &--image-left .image-aside__image {
+      margin: 0 auto $base-margin auto;
+    }
+  }
 }
