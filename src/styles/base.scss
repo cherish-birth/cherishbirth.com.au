@@ -1,6 +1,7 @@
-@import "./variables.scss";
+@import './variables.scss';
 
-html, body {
+html,
+body {
   min-height: 100%;
   margin: 0;
   padding: 0;
@@ -8,14 +9,20 @@ html, body {
 
 body {
   background: $background-primary;
-  background: linear-gradient(135deg, $background-primary 0%, $background-primary 60%, $background-secondary 100%);
+  background: linear-gradient(
+    135deg,
+    $background-primary 0%,
+    $background-primary 60%,
+    $background-secondary 100%
+  );
   color: $text-primary;
   font-family: $font-serif;
   font-weight: $font-serif-regular;
   font-size: $font-size-base;
 }
 
-b, strong {
+b,
+strong {
   font-weight: $font-serif-strong;
 }
 
@@ -64,30 +71,56 @@ img {
   margin: 40px 0;
 }
 
-
 /**
  * HEADERS & PARAGRAPHS
  */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $font-sans-serif;
   font-weight: $font-sans-serif-regular;
   text-transform: uppercase;
   letter-spacing: 0.15em;
 }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.8rem; }
-h3 { font-size: 1.6rem; }
-h4 { font-size: 1.4rem; }
-h5 { font-size: 1.2rem; }
-h6 { font-size: 1rem; }
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h3 {
+  font-size: 1.6rem;
+}
+h4 {
+  font-size: 1.4rem;
+}
+h5 {
+  font-size: 1.2rem;
+}
+h6 {
+  font-size: 1rem;
+}
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: $base-margin 0 0;
 }
-h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p {
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p {
   margin-top: $base-margin / 2;
 }
-
 
 /**
  * LINKS
@@ -107,7 +140,6 @@ a {
     }
   }
 }
-
 
 /**
  * LISTS
@@ -154,4 +186,30 @@ ol.circles {
 
 .fa-ul .fa-li {
   margin-top: 2px;
+}
+
+.image-aside {
+  display: flex;
+  align-items: flex-start;
+
+  .image-aside__content {
+    flex: 1;
+
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  .image-aside__image {
+    width: 280px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  &--image-right .image-aside__image {
+    margin-left: 20px;
+  }
+  &--image-left .image-aside__image {
+    margin-right: 20px;
+  }
 }
