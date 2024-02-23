@@ -10,7 +10,6 @@ $text-primary: #585858;
 $text-alternative: #ffffff;
 $text-muted: fade_out($text-primary, 0.2);
 
-
 /**
  * FONTS
  */
@@ -23,14 +22,13 @@ $font-size-sm: 14px;
 $font-size-base: 16px;
 $font-size-lg: 18px;
 
-
 /**
  * SIZING
  */
 $max-width: 720px;
+$desktop-width: 660px;
 $base-margin: 30px;
 $base-padding: 20px;
-
 
 /**
  * TRANSITIONS

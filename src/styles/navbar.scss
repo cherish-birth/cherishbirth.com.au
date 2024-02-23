@@ -1,6 +1,4 @@
-@import "./variables";
-
-$max-menu-width: 660px;
+@import './variables';
 
 nav {
   margin: 15px 0;
@@ -10,7 +8,7 @@ nav {
   }
 }
 
-@media (max-width: $max-menu-width - 1) {
+@media (max-width: ($desktop-width - 1)) {
   nav {
     max-height: 48px;
 
@@ -64,7 +62,7 @@ nav {
   }
 }
 
-@media (min-width: $max-menu-width) {
+@media (min-width: $desktop-width) {
   nav {
     a.btn {
       flex: 1;
