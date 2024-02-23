@@ -43,7 +43,9 @@ img {
     border-radius: 10px;
   }
 }
-p + img {
+p + img,
+ol + img,
+ul + img {
   margin-top: $base-margin;
 }
 
