@@ -9,12 +9,6 @@ body {
 
 body {
   background: $background-primary;
-  background: linear-gradient(
-    135deg,
-    $background-primary 0%,
-    $background-primary 60%,
-    $background-secondary 100%
-  );
   color: $text-primary;
   font-family: $font-serif;
   font-weight: $font-serif-regular;
@@ -53,7 +47,7 @@ ul + img {
   text-align: center !important;
 }
 .text-highlight {
-  color: $brand-secondary;
+  color: $brand-tertiary;
 }
 .text-muted {
   color: $text-muted;
@@ -71,7 +65,7 @@ ul + img {
 }
 
 .logo {
-  max-width: 560px;
+  max-width: 420px;
   margin: 40px auto;
   padding: 0 30px;
 }
@@ -173,7 +167,7 @@ ol.circles {
     &:before {
       content: counter(steps-counter);
       color: $text-alternative;
-      background: $brand-primary;
+      background: $brand-tertiary;
       display: inline-block;
       width: $circle-size;
       height: $circle-size;

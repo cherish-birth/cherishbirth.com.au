@@ -19,11 +19,14 @@
 
   &.active {
     background-color: $brand-secondary;
+    &:hover {
+      background-color: darken($brand-secondary, 5%);
+    }
   }
 
   &:hover,
   &:focus:not(.active) {
-    background-color: lighten($brand-primary, 10%);
+    background-color: darken($brand-primary, 5%);
     transform: scale(1);
   }
 
