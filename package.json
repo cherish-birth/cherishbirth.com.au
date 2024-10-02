@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "gulp": "gulp",
+    "dev": "run-p watch serve",
     "start": "run-p watch serve",
     "prestart": "gulp",
     "build": "cross-env NODE_ENV=production gulp",
@@ -21,6 +22,7 @@
   "author": "Ben Booth <bkbooth@gmail.com> (https://benbooth.dev)",
   "license": "ISC",
   "homepage": "https://cherishbirth.com.au",
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
