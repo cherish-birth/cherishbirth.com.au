@@ -102,7 +102,7 @@ const serve = () =>
   gulp.src(paths.dist).pipe(
     server({
       host: '0.0.0.0',
-      post: '8000',
+      port: 8000,
       livereload: true,
       fallback: '404.html',
     })

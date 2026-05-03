@@ -19,6 +19,13 @@
     "activeMenuId": "services"
   },
   {
+    "url": "/date-nights",
+    "template": "date-nights",
+    "pageTitle": "Doula Date Nights",
+    "activeMenuId": "services",
+    "hideFromMenu": true
+  },
+  {
     "url": "/about",
     "template": "about",
     "pageTitle": "About me",
