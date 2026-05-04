@@ -15,7 +15,8 @@ nav {
     .menu {
       position: relative;
       z-index: 10;
-      background: fade_out(white, 0.3);
+      /* Avoid a second “plate” behind pills (buttons already have shadow + radius) */
+      background: transparent;
 
       flex-direction: column;
       height: 100%;
@@ -24,11 +25,81 @@ nav {
       transition: max-height $base-transition;
 
       &.is-open {
-        max-height: 260px; // Big enough to cover all menu items
+        max-height: 320px; // Top-level items + services sub-link(s)
 
-        .caret {
+        .menu__expand .caret {
           transform: rotate(180deg);
         }
+      }
+
+      > .menu__lead.is-active {
+        order: -1;
+      }
+
+      > .menu__group.is-active-menu {
+        order: -1;
+      }
+    }
+
+    .menu__group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu:not(.is-open) .menu__mobile-subs {
+      display: none;
+    }
+
+    .menu__mobile-subs {
+      display: flex;
+      flex-direction: column;
+      padding-left: 12px;
+    }
+
+    .menu__lead {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    .menu__lead-link.btn {
+      flex: 1 1 auto;
+      min-width: 0;
+      margin-bottom: 0;
+      text-align: left;
+      border-radius: 10px 0 0 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu__expand {
+      flex: 0 0 44px;
+      margin: 0;
+      padding: 0;
+      transform: none;
+      border: none;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      outline: none;
+      background: $brand-secondary;
+      color: $text-alternative;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color $base-transition, transform $base-transition;
+
+      &:hover,
+      &:focus {
+        background-color: darken($brand-secondary, 5%);
+      }
+
+      .caret {
+        display: block;
+        line-height: 1;
+        transition: transform $base-transition;
       }
     }
 
@@ -36,14 +107,6 @@ nav {
       margin-bottom: 5px;
       position: relative;
       font-size: $font-size-base;
-
-      &.active {
-        order: -1;
-
-        .caret {
-          display: block;
-        }
-      }
 
       transform: scale(0.97);
       &:hover,
@@ -59,19 +122,70 @@ nav {
         transition: transform $base-transition;
       }
     }
+
+    /* After `nav a.btn` — that rule’s scale() shrinks the link and reads as a gap beside .menu__expand */
+    .menu__lead .menu__lead-link.btn {
+      transform: none;
+
+      &:hover,
+      &:focus {
+        transform: none;
+      }
+    }
+
+    /* Standalone nav links (not in .menu__lead): keep pill shadow */
+    .menu > a.btn {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    a.btn--menu-sub {
+      font-size: $font-size-sm;
+      margin-bottom: 4px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+      .caret {
+        display: none !important;
+      }
+    }
   }
 }
 
 @media (min-width: $desktop-width) {
   nav {
+    .menu {
+      /* Even spacing: margin on :not(:first-child) breaks when .menu__group uses
+         display:contents — the Services <a> stays :first-child of its group and
+         misses a left margin while siblings use .menu as their parent. */
+      gap: 5px;
+    }
+
+    .menu__group {
+      display: contents;
+    }
+
+    .menu__mobile-subs {
+      display: none !important;
+    }
+
+    .menu__lead {
+      display: contents;
+    }
+
+    .menu__expand {
+      display: none !important;
+    }
+
+    .menu__lead-link.btn {
+      border-radius: 10px;
+    }
+
     a.btn {
       flex: 1;
       font-size: $font-size-sm;
       text-align: center;
-
-      &:not(:first-child) {
-        margin-left: 5px;
-      }
+      margin-left: 0;
 
       .caret {
         display: none;

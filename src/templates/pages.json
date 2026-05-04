@@ -16,14 +16,15 @@
     "url": "/services",
     "template": "services",
     "pageTitle": "Services",
-    "activeMenuId": "services"
+    "activeMenuId": "services",
+    "menuSubpagesParent": true
   },
   {
     "url": "/date-nights",
     "template": "date-nights",
     "pageTitle": "Doula Date Nights",
     "activeMenuId": "services",
-    "hideFromMenu": true,
+    "menuSubOf": "services",
     "showFreebiesModal": true
   },
   {

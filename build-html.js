@@ -21,6 +21,7 @@ module.exports = function(isProduction = false, paths) {
     const pageHtml = renderTemplate(pageTemplate, {
       browserTitle: (page.browserTitle !== false ? `${page.pageTitle} | ` : '') + baseTitle,
       activeMenu: page.activeMenuId || null,
+      activePath: page.url,
       showFreebiesModal: !!page.showFreebiesModal,
     });
     writeFile(path.join(paths.dist, page.url), pageHtml);

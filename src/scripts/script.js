@@ -1,15 +1,35 @@
 var FREEBIES_STORAGE_KEY = 'cherishbirth_date_nights_freebies_v1'
 var FREEBIES_OPEN_DELAY_MS = 750
 var FREEBIES_EXIT_MS = 320
+/* Keep in sync with $desktop-width in src/styles/variables.scss */
+var MOBILE_NAV_MAX_PX = 659
+var mobileNavMql = window.matchMedia('(max-width: ' + MOBILE_NAV_MAX_PX + 'px)')
+
+function isMobileNavLayout() {
+  return mobileNavMql.matches
+}
 
 function onReady() {
-  var activeButton = document.querySelector('a.btn.active')
-  if (activeButton) {
-    activeButton.addEventListener('click', function handleActiveNavClick(event) {
+  var menu = document.querySelector('nav .menu')
+  var expandBtn = menu && menu.querySelector('[data-menu-expand]')
+  if (expandBtn && menu) {
+    expandBtn.addEventListener('click', function handleMenuExpandClick(event) {
+      if (!isMobileNavLayout()) return
       event.preventDefault()
-      var menu = document.querySelector('nav .menu')
-      if (menu) menu.classList.toggle('is-open')
+      var open = menu.classList.toggle('is-open')
+      expandBtn.setAttribute('aria-expanded', open ? 'true' : 'false')
     })
+    function closeMenuIfDesktop() {
+      if (!mobileNavMql.matches) {
+        menu.classList.remove('is-open')
+        expandBtn.setAttribute('aria-expanded', 'false')
+      }
+    }
+    if (mobileNavMql.addEventListener) {
+      mobileNavMql.addEventListener('change', closeMenuIfDesktop)
+    } else if (mobileNavMql.addListener) {
+      mobileNavMql.addListener(closeMenuIfDesktop)
+    }
   }
 
   var root = document.querySelector('[data-freebies-modal]')
