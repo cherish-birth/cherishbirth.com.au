@@ -1,0 +1,66 @@
+<div id='freebies-modal' class='freebies-modal' data-freebies-modal hidden aria-hidden='true'>
+  <div class='freebies-modal__backdrop' data-freebies-modal-dismiss tabindex='-1'></div>
+  <div
+    class='freebies-modal__panel'
+    role='dialog'
+    aria-modal='true'
+    aria-labelledby='freebies-modal-title'
+  >
+    <button
+      type='button'
+      class='freebies-modal__close'
+      data-freebies-modal-dismiss
+      aria-label='Close this dialog'
+    >
+      <i class='fa fa-times' aria-hidden='true'></i>
+    </button>
+
+    <div class='freebies-modal__body' data-freebies-modal-form-wrap>
+      <h2 id='freebies-modal-title' class='freebies-modal__title'>Practical birth freebies</h2>
+      <p class='freebies-modal__lede'>
+        We don&rsquo;t want to spam you, we don&rsquo;t want you to miss out BUT we do want to give
+        you some amazing freebies! Pop your email below and you&rsquo;ll receive some very amazing &
+        practical freebies straight to your inbox.
+      </p>
+      <form
+        class='freebies-modal__form'
+        data-freebies-form
+        action='https://formspree.io/f/xojrepop'
+        method='post'
+        novalidate
+      >
+        <input type='hidden' name='_subject' value='Doula Date Nights - freebies signup' />
+        <label class='freebies-modal__label' for='freebies-email'>Email</label>
+        <input
+          id='freebies-email'
+          class='freebies-modal__input'
+          type='email'
+          name='email'
+          autocomplete='email'
+          required
+          placeholder='you@example.com'
+        />
+        <p class='freebies-modal__hint text-muted'>We&rsquo;ll send your freebies to this address.</p>
+        <p class='freebies-modal__error' data-freebies-error hidden role='alert'></p>
+        <button type='submit' class='btn btn-block freebies-modal__submit' data-freebies-submit>
+          Send me the freebies
+        </button>
+      </form>
+      <p class='freebies-modal__dismiss-wrap'>
+        <button type='button' class='freebies-modal__dismiss' data-freebies-modal-dismiss>
+          No thanks
+        </button>
+      </p>
+    </div>
+
+    <div class='freebies-modal__success' data-freebies-success hidden role='status'>
+      <p class='freebies-modal__success-title'>You&rsquo;re all set</p>
+      <p>Thank you! Keep an eye on your inbox for your freebies.</p>
+      <button
+        type='button'
+        class='btn freebies-modal__success-close'
+        data-freebies-modal-dismiss
+      >Close</button>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,8 @@
     "template": "date-nights",
     "pageTitle": "Doula Date Nights",
     "activeMenuId": "services",
-    "hideFromMenu": true
+    "hideFromMenu": true,
+    "showFreebiesModal": true
   },
   {
     "url": "/about",

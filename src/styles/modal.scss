@@ -1,0 +1,209 @@
+@import './variables';
+
+$modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+$modal-enter-ms: 420ms;
+$modal-exit-ms: 280ms;
+
+@media (prefers-reduced-motion: reduce) {
+  .freebies-modal,
+  .freebies-modal__backdrop,
+  .freebies-modal__panel {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body.freebies-modal-open {
+  overflow: hidden;
+}
+
+.freebies-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $base-padding;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.freebies-modal:not([hidden]) {
+  pointer-events: auto;
+}
+
+.freebies-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity $modal-enter-ms $modal-ease;
+}
+
+.freebies-modal.is-open .freebies-modal__backdrop {
+  opacity: 1;
+}
+
+.freebies-modal.is-leaving .freebies-modal__backdrop {
+  opacity: 0;
+  transition-duration: $modal-exit-ms;
+}
+
+.freebies-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  max-height: calc(100vh - #{2 * $base-padding});
+  overflow: auto;
+  margin: 0;
+  padding: (1.5 * $base-padding) $base-padding $base-padding;
+  box-sizing: border-box;
+  background: lighten($background-primary, 4%);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+  transition:
+    opacity $modal-enter-ms $modal-ease,
+    transform $modal-enter-ms $modal-ease;
+}
+
+.freebies-modal.is-open .freebies-modal__panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.freebies-modal.is-leaving .freebies-modal__panel {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  transition-duration: $modal-exit-ms;
+}
+
+.freebies-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: $text-muted;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: color $fast-transition, background-color $fast-transition;
+
+  &:hover,
+  &:focus {
+    color: $text-primary;
+    background: fade_out($text-primary, 0.92);
+    outline: none;
+  }
+}
+
+.freebies-modal__title {
+  font-size: 1.15rem;
+  margin: 0 36px 0 0;
+  padding-right: 0;
+}
+
+.freebies-modal__lede {
+  font-size: $font-size-sm;
+  line-height: 1.45;
+  margin-top: $base-padding;
+}
+
+.freebies-modal__label {
+  display: block;
+  font-family: $font-sans-serif;
+  font-size: $font-size-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: $base-padding 0 8px;
+}
+
+.freebies-modal__input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-family: $font-sans-serif;
+  font-size: $font-size-base;
+  border: 1px solid fade_out($text-primary, 0.75);
+  border-radius: 8px;
+  background: $text-alternative;
+  transition: border-color $fast-transition, box-shadow $fast-transition;
+
+  &:focus {
+    outline: none;
+    border-color: $brand-secondary;
+    box-shadow: 0 0 0 3px fade_out($brand-secondary, 0.65);
+  }
+}
+
+.freebies-modal__hint {
+  font-size: $font-size-sm;
+  margin: 8px 0 0;
+}
+
+.freebies-modal__error {
+  margin: $base-padding 0 0;
+  font-size: $font-size-sm;
+  color: $brand-error;
+}
+
+.freebies-modal__submit {
+  margin-top: $base-padding;
+}
+
+.freebies-modal__dismiss-wrap {
+  text-align: center;
+  margin: $base-padding 0 0;
+}
+
+.freebies-modal__dismiss {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: $font-sans-serif;
+  font-size: $font-size-sm;
+  color: $text-muted;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color $fast-transition;
+
+  &:hover,
+  &:focus {
+    color: $text-primary;
+    outline: none;
+  }
+}
+
+.freebies-modal__success {
+  text-align: center;
+  padding: $base-padding 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.freebies-modal__success-title {
+  font-family: $font-sans-serif;
+  font-weight: $font-sans-serif-regular;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 1.1rem;
+  margin: 0 0 $base-padding;
+}
+
+.freebies-modal__success-close {
+  margin-top: $base-padding;
+}
+
+.freebies-modal__body[hidden] {
+  display: none;
+}
