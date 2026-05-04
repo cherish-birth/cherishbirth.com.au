@@ -3,6 +3,15 @@ var FREEBIES_OPEN_DELAY_MS = 750
 var FREEBIES_EXIT_MS = 320
 
 function onReady() {
+  var activeButton = document.querySelector('a.btn.active')
+  if (activeButton) {
+    activeButton.addEventListener('click', function handleActiveNavClick(event) {
+      event.preventDefault()
+      var menu = document.querySelector('nav .menu')
+      if (menu) menu.classList.toggle('is-open')
+    })
+  }
+
   var root = document.querySelector('[data-freebies-modal]')
   if (!root) return
 
