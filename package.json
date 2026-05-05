@@ -38,14 +38,15 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^6.0.1",
     "gulp-server-livereload": "^1.9.2",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "handlebars": "^4.7.9",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.5",
-    "pump": "^3.0.0"
+    "pump": "^3.0.0",
+    "sass": "^1.99.0"
   },
   "resolutions": {
     "fresh": "^0.5.2",
@@ -60,6 +61,6 @@
     "socket.io": "^2.2.0"
   },
   "engines": {
-    "node": ">= 8"
+    "node": ">=18"
   }
 }
