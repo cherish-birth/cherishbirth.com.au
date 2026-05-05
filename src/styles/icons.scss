@@ -1,0 +1,53 @@
+@use 'variables' as *;
+
+// Icon sizing for inline SVGs. Markup: `src/templates/partials/icon-*.hbs` ({{> icon-name}}).
+.icon {
+  display: block;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.icon--1em {
+  width: 1em;
+  height: 1em;
+}
+
+.icon--lg {
+  width: 1.75em;
+  height: 1.75em;
+}
+
+.icon--caret {
+  width: 22px;
+  height: 22px;
+}
+
+.check-list {
+  list-style: none;
+  padding-left: 0;
+  margin: $base-margin 0 0;
+
+  > li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55em;
+    margin: 0.65em 0 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__icon {
+    flex: 0 0 auto;
+    margin-top: 0.1em;
+
+    svg {
+      display: block;
+    }
+  }
+}
+
+a:not(.btn) .icon {
+  vertical-align: -0.12em;
+}

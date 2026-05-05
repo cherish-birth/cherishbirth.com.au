@@ -9,9 +9,8 @@
   line-height: 1.2;
   color: var(--color-text-on-lavender);
 
-  .fa {
+  .icon {
     flex-shrink: 0;
-    line-height: 1;
   }
   text-decoration: none;
   cursor: pointer;
@@ -65,8 +64,9 @@
     background-color: var(--color-brand-tertiary);
     color: var(--color-text-alternative);
 
-    .fa {
-      font-size: 0.88em;
+    .icon {
+      width: 0.88em;
+      height: 0.88em;
       opacity: 0.92;
     }
 
