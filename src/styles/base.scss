@@ -74,6 +74,37 @@ ul + img {
   margin: 40px 0;
 }
 
+.site-footer {
+  margin-top: 3rem;
+  padding-top: 0.75rem;
+
+  > :first-child {
+    margin-top: 0;
+  }
+}
+
+.site-footer__flourish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55em;
+  margin: 0 0 1.75rem;
+  color: $text-muted;
+  font-family: $font-serif;
+  font-size: 1.35rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.site-footer__flourish-dot {
+  display: inline-block;
+  transform: translateY(-0.05em);
+}
+
+.site-footer__actions {
+  margin-top: 0;
+}
+
 /**
  * UTILITIES
  */
