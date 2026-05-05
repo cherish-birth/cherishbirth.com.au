@@ -9,7 +9,7 @@ const htmlmin = require('gulp-htmlmin')
 const postcss = require('gulp-postcss')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')(require('sass'))
-const server = require('gulp-server-livereload')
+const browserSync = require('browser-sync').create()
 const sourcemaps = require('gulp-sourcemaps')
 const uglify = require('gulp-uglify')
 const path = require('path')
@@ -89,27 +89,56 @@ const cleanAndCopyFiles = gulp.series(cleanCopies, copyFiles)
 
 const clean = () => del(paths.dist)
 const build = gulp.series(clean, gulp.parallel(buildStyles, buildScripts, copyFiles), buildHtml)
-const watch = () => {
+const reload = done => {
+  if (browserSync.active) {
+    browserSync.reload()
+  }
+  done()
+}
+
+const registerWatchers = () => {
   gulp.watch(
     [path.join(paths.src, '**', '*.hbs'), path.join(paths.src, 'templates', 'pages.json')],
-    cleanAndBuildHtml
+    gulp.series(cleanAndBuildHtml, reload)
   )
-  gulp.watch(path.join(paths.src, '**', '*.scss'), cleanAndBuildStyles)
-  gulp.watch(path.join(paths.src, '**', '*.js'), cleanAndBuildScripts)
-  gulp.watch(paths.copies.map(copy => path.join(paths.src, copy, '**')), cleanAndCopyFiles)
+  gulp.watch(path.join(paths.src, '**', '*.scss'), gulp.series(cleanAndBuildStyles, reload))
+  gulp.watch(path.join(paths.src, '**', '*.js'), gulp.series(cleanAndBuildScripts, reload))
+  gulp.watch(paths.copies.map(copy => path.join(paths.src, copy, '**')), gulp.series(cleanAndCopyFiles, reload))
 }
-const serve = () =>
-  gulp.src(paths.dist).pipe(
-    server({
-      host: '0.0.0.0',
+
+const watch = () => {
+  registerWatchers()
+}
+
+const startServer = done => {
+  browserSync.init(
+    {
+      server: {
+        baseDir: paths.dist,
+        index: 'index.html',
+      },
       port: 8000,
-      livereload: true,
-      fallback: '404.html',
-    })
+      host: '0.0.0.0',
+      open: false,
+      notify: false,
+      ui: false,
+    },
+    done
   )
+}
+
+/** One-shot static preview (no watch). Expects `dist` already built. */
+const serve = done => startServer(done)
+
+/** Full local dev: production-style build once, then BrowserSync + file watchers with reload. */
+const dev = gulp.series(build, startServer, done => {
+  registerWatchers()
+  done()
+})
 
 exports.clean = clean
 exports.serve = serve
 exports.build = build
 exports.watch = watch
+exports.dev = dev
 exports.default = build
