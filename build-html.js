@@ -12,6 +12,12 @@ module.exports = function(isProduction = false, paths) {
   const pages = require(pagesFile);
   const pagesDir = path.join(paths.src, 'templates', 'pages');
   const baseTitle = 'Cherish Birth';
+  const siteOrigin = 'https://cherishbirth.com.au';
+
+  function canonicalUrlForPage(url) {
+    if (url === '/') return `${siteOrigin}/`;
+    return `${siteOrigin}${url.replace(/\/$/, '')}/`;
+  }
 
   // Build main pages
   pages.forEach(page => {
@@ -21,6 +27,7 @@ module.exports = function(isProduction = false, paths) {
     const pageHtml = renderTemplate(pageTemplate, {
       browserTitle: (page.browserTitle !== false ? `${page.pageTitle} | ` : '') + baseTitle,
       metaDescription: page.metaDescription || null,
+      canonicalUrl: canonicalUrlForPage(page.url),
       activeMenu: page.activeMenuId || null,
       activePath: page.url,
       showFreebiesModal: !!page.showFreebiesModal,
@@ -30,12 +37,16 @@ module.exports = function(isProduction = false, paths) {
 
   // Build 404 page
   const notFoundTemplate = loadHandlebarsTemplate(path.join(pagesDir, '404.hbs'));
-  const notFoundHtml = renderTemplate(notFoundTemplate, { browserTitle: `Not Found | ${baseTitle}` });
+  const notFoundHtml = renderTemplate(notFoundTemplate, {
+    browserTitle: `Not Found | ${baseTitle}`,
+    is404: true,
+    metaDescription: 'The page you requested could not be found on Cherish Birth.',
+  });
   writeFile(paths.dist, notFoundHtml, '404.html');
 
   // Build sitemap
   const sitemapTemplate = loadHandlebarsTemplate(path.join(pagesDir, 'sitemap.hbs'));
-  const sitemapXml = renderTemplate(sitemapTemplate);
+  const sitemapXml = renderTemplate(sitemapTemplate, { baseUrl: siteOrigin });
   writeFile(paths.dist, sitemapXml, 'sitemap.xml');
 
   function renderTemplate(template, data = {}) {

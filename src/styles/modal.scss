@@ -1,4 +1,3 @@
-@use 'sass:color';
 @use 'variables' as *;
 
 $modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -60,7 +59,7 @@ body.freebies-modal-open {
   margin: 0;
   padding: (1.5 * $base-padding) $base-padding $base-padding;
   box-sizing: border-box;
-  background: color.adjust($background-primary, $lightness: 4%);
+  background: var(--color-modal-panel-bg);
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
   opacity: 0;
@@ -90,7 +89,7 @@ body.freebies-modal-open {
   padding: 0;
   border: none;
   background: transparent;
-  color: $text-muted;
+  color: var(--color-text-muted);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
@@ -99,8 +98,8 @@ body.freebies-modal-open {
 
   &:hover,
   &:focus {
-    color: $text-primary;
-    background: color.adjust($text-primary, $alpha: -0.92);
+    color: var(--color-text);
+    background: var(--color-close-hover-bg);
   }
 
   &:focus:not(:focus-visible) {
@@ -108,7 +107,7 @@ body.freebies-modal-open {
   }
 
   &:focus-visible {
-    outline: 3px solid $brand-tertiary;
+    outline: 3px solid var(--color-brand-tertiary);
     outline-offset: 2px;
   }
 }
@@ -127,7 +126,7 @@ body.freebies-modal-open {
 
 .freebies-modal__label {
   display: block;
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans);
   font-size: $font-size-sm;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -139,17 +138,17 @@ body.freebies-modal-open {
   width: 100%;
   box-sizing: border-box;
   padding: 12px 14px;
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans);
   font-size: $font-size-base;
-  border: 1px solid color.adjust($text-primary, $alpha: -0.75);
+  border: 1px solid var(--color-input-border);
   border-radius: 8px;
-  background: $text-alternative;
+  background: var(--color-text-alternative);
   transition: border-color $fast-transition, box-shadow $fast-transition;
 
   &:focus {
     outline: none;
-    border-color: $brand-secondary;
-    box-shadow: 0 0 0 3px color.adjust($brand-secondary, $alpha: -0.65);
+    border-color: var(--color-brand-secondary);
+    box-shadow: 0 0 0 3px var(--color-input-focus-ring);
   }
 }
 
@@ -161,7 +160,7 @@ body.freebies-modal-open {
 .freebies-modal__error {
   margin: $base-padding 0 0;
   font-size: $font-size-sm;
-  color: $brand-error;
+  color: var(--color-brand-error);
 }
 
 .freebies-modal__submit {
@@ -177,9 +176,9 @@ body.freebies-modal-open {
   padding: 2px 4px;
   border: none;
   background: none;
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans);
   font-size: $font-size-sm;
-  color: $text-muted;
+  color: var(--color-text-muted);
   text-decoration: underline;
   cursor: pointer;
   border-radius: 4px;
@@ -187,7 +186,7 @@ body.freebies-modal-open {
 
   &:hover,
   &:focus {
-    color: $text-primary;
+    color: var(--color-text);
   }
 
   &:focus:not(:focus-visible) {
@@ -195,7 +194,7 @@ body.freebies-modal-open {
   }
 
   &:focus-visible {
-    outline: 3px solid $brand-tertiary;
+    outline: 3px solid var(--color-brand-tertiary);
     outline-offset: 2px;
   }
 }
@@ -210,7 +209,7 @@ body.freebies-modal-open {
 }
 
 .freebies-modal__success-title {
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans);
   font-weight: $font-sans-serif-regular;
   text-transform: uppercase;
   letter-spacing: 0.15em;

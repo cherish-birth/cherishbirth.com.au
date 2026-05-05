@@ -1,5 +1,25 @@
-@use 'sass:color';
 @use 'variables' as *;
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 16px;
+  background: var(--color-brand-secondary);
+  color: var(--color-text-on-teal);
+  font-family: var(--font-sans);
+  font-weight: $font-sans-serif-regular;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+  &:focus {
+    left: $base-padding;
+    outline: 3px solid var(--color-brand-tertiary);
+    outline-offset: 2px;
+  }
+}
 
 html,
 body {
@@ -9,9 +29,9 @@ body {
 }
 
 body {
-  background: $background-primary;
-  color: $text-primary;
-  font-family: $font-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-serif);
   font-weight: $font-serif-regular;
   font-size: $font-size-base;
   line-height: $base-line-height;
@@ -51,17 +71,17 @@ ul + img {
   text-align: center !important;
 }
 .text-highlight {
-  color: $brand-tertiary;
+  color: var(--color-brand-tertiary);
 }
 .text-muted {
-  color: $text-muted;
+  color: var(--color-text-muted);
 }
 .text-lg {
   font-size: 1.15em;
 }
 
 .badge {
-  background: color.adjust($text-primary, $alpha: -0.95);
+  background: var(--color-badge-bg);
   padding: 1px 10px;
   margin: 0 5px;
   border-radius: 5px;
@@ -103,8 +123,8 @@ ul + img {
   align-items: center;
   gap: 0.55em;
   margin: 0 0 1.75rem;
-  color: $text-muted;
-  font-family: $font-serif;
+  color: var(--color-text-muted);
+  font-family: var(--font-serif);
   font-size: 1.35rem;
   line-height: 1;
   opacity: 0.85;
@@ -139,7 +159,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans);
   font-weight: $font-sans-serif-regular;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -185,7 +205,7 @@ h6 + p {
  * LINKS
  */
 a {
-  color: $text-primary;
+  color: var(--color-text);
   transition: opacity $fast-transition ease-out;
 
   &:not(.btn):hover {
@@ -224,8 +244,8 @@ ol.circles {
 
     &:before {
       content: counter(steps-counter);
-      color: $text-alternative;
-      background: $brand-tertiary;
+      color: var(--color-text-alternative);
+      background: var(--color-brand-tertiary);
       display: inline-block;
       width: $circle-size;
       height: $circle-size;

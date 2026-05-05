@@ -1,22 +1,6 @@
 @use 'sass:color';
 
 /**
- * COLOURS
- */
-$brand-primary: #cabfda;
-$brand-secondary: #78a3af;
-$brand-tertiary: #c83a7d;
-$brand-error: #ad1f1f;
-$background-primary: #d2e1e1;
-$text-primary: #000000;
-$text-alternative: #ffffff;
-$text-muted: color.adjust($text-primary, $alpha: -0.2);
-
-// Text on pastel buttons (lavender / teal); tinted darks read softer than pure black.
-$text-on-lavender: #322447;
-$text-on-teal: #193038;
-
-/**
  * FONTS
  */
 $font-serif: 'Martel', Georgia, serif;
@@ -43,3 +27,54 @@ $base-padding: 20px;
 $fast-transition: 0.3s;
 $base-transition: 0.5s;
 $slow-transition: 0.8s;
+
+/**
+ * COLOURS (Sass = build-time source; runtime = :root below)
+ */
+$brand-primary: #cabfda;
+$brand-secondary: #78a3af;
+$brand-tertiary: #c83a7d;
+$brand-error: #ad1f1f;
+// Softer than flat #d2e1e1: lightened with white for a calmer page field.
+// If you change this mix, update `theme-color` in `layout.hbs` to stay in sync.
+$background-primary: color.mix(#ffffff, #d2e1e1, 16%);
+$text-primary: #000000;
+$text-alternative: #ffffff;
+$text-muted: color.adjust($text-primary, $alpha: -0.2);
+
+// Text on pastel buttons (lavender / teal); tinted darks read softer than pure black.
+$text-on-lavender: #322447;
+$text-on-teal: #193038;
+
+$brand-primary-hover: color.adjust($brand-primary, $lightness: -6%);
+$brand-secondary-hover: color.adjust($brand-secondary, $lightness: -6%);
+$brand-tertiary-hover: color.adjust($brand-tertiary, $lightness: -6%);
+
+$modal-panel-bg: color.adjust($background-primary, $lightness: 4%);
+$badge-bg: color.adjust($text-primary, $alpha: -0.95);
+$input-border: color.adjust($text-primary, $alpha: -0.75);
+$input-focus-ring: color.adjust($brand-secondary, $alpha: -0.65);
+$close-hover-bg: color.adjust($text-primary, $alpha: -0.92);
+
+:root {
+  --color-bg: #{$background-primary};
+  --color-text: #{$text-primary};
+  --color-text-muted: #{$text-muted};
+  --color-text-alternative: #{$text-alternative};
+  --color-text-on-lavender: #{$text-on-lavender};
+  --color-text-on-teal: #{$text-on-teal};
+  --color-brand-primary: #{$brand-primary};
+  --color-brand-secondary: #{$brand-secondary};
+  --color-brand-tertiary: #{$brand-tertiary};
+  --color-brand-error: #{$brand-error};
+  --color-brand-primary-hover: #{$brand-primary-hover};
+  --color-brand-secondary-hover: #{$brand-secondary-hover};
+  --color-brand-tertiary-hover: #{$brand-tertiary-hover};
+  --color-modal-panel-bg: #{$modal-panel-bg};
+  --color-badge-bg: #{$badge-bg};
+  --color-input-border: #{$input-border};
+  --color-input-focus-ring: #{$input-focus-ring};
+  --color-close-hover-bg: #{$close-hover-bg};
+  --font-sans: #{$font-sans-serif};
+  --font-serif: #{$font-serif};
+}

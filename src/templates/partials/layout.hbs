@@ -11,12 +11,29 @@
     </title>
     <meta name="description" content="{{#if metaDescription}}{{ metaDescription }}{{else}}Cherish Birth — a Wollongong-based birth doula service supporting families through pregnancy, labour, birth and the early days of parenthood.{{/if}}">
 
+    {{#if is404}}
+      <meta name="robots" content="noindex">
+    {{else}}
+      <link rel="canonical" href="{{ canonicalUrl }}">
+    {{/if}}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cherish Birth">
+    <meta property="og:title" content="{{ browserTitle }}">
+    <meta property="og:description" content="{{#if metaDescription}}{{ metaDescription }}{{else}}Cherish Birth — a Wollongong-based birth doula service supporting families through pregnancy, labour, birth and the early days of parenthood.{{/if}}">
+    <meta property="og:image" content="https://cherishbirth.com.au/images/cherish-birth-logo.png">
+    {{#unless is404}}
+      <meta property="og:url" content="{{ canonicalUrl }}">
+    {{/unless}}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ browserTitle }}">
+    <meta name="twitter:description" content="{{#if metaDescription}}{{ metaDescription }}{{else}}Cherish Birth — a Wollongong-based birth doula service supporting families through pregnancy, labour, birth and the early days of parenthood.{{/if}}">
+
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
     <link rel="manifest" href="/images/icons/manifest.json">
-    <meta name="theme-color" content="#d2e1e1">
+    <meta name="theme-color" content="#d9e6e6">
 
     <!-- Vendor stylesheets -->
     {{#if isProduction}}
@@ -41,6 +58,7 @@
     {{/if}}
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="container">
       <div class="logo">
         <a href="/" class="logo__link">
@@ -50,7 +68,7 @@
 
       {{> menu }}
 
-      <div class="content">
+      <div class="content" id="main-content" tabindex="-1">
         {{> content }}
       </div>
 
