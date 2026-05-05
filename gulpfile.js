@@ -22,7 +22,7 @@ const isProduction = ['production', 'prod'].includes(process.env.NODE_ENV)
 const paths = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist'),
-  copies: ['images', 'files', ...(isProduction ? [] : ['fonts', 'vendor'])],
+  copies: ['images', 'files', 'robots.txt', ...(isProduction ? [] : ['fonts', 'vendor'])],
 }
 
 /**
