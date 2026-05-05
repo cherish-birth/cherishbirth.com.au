@@ -1,24 +1,40 @@
 @import './variables';
 
 .btn {
-  color: $text-alternative;
+  display: inline-block;
+  padding: 12px 20px;
+  line-height: 1.2;
+  color: $text-on-lavender;
   text-decoration: none;
-  opacity: 1;
   cursor: pointer;
 
-  display: inline-block;
-  padding: 10px 15px;
   background: $brand-primary;
   border: none;
-  border-radius: 10px;
-  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.06);
 
-  transform: scale(0.98);
-  transition: background-color $base-transition, transform $base-transition,
-    box-shadow $fast-transition;
+  transition:
+    background-color $fast-transition ease,
+    box-shadow $fast-transition ease,
+    transform $fast-transition ease,
+    color $fast-transition ease;
 
-  /* Remove default focus ring only when keyboard focus isn't active; a clear
-     focus ring is still provided via :focus-visible for keyboard users. */
+  &:hover {
+    background-color: darken($brand-primary, 6%);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    transition-duration: 0.08s;
+  }
+
+  // Mouse clicks: no ring. Keyboard: ring from :focus-visible.
   &:focus:not(:focus-visible) {
     outline: none;
   }
@@ -30,24 +46,30 @@
 
   &.active {
     background-color: $brand-secondary;
+    color: $text-on-teal;
+
     &:hover {
-      background-color: darken($brand-secondary, 5%);
+      background-color: darken($brand-secondary, 6%);
     }
   }
 
-  &:hover,
-  &:focus:not(.active) {
-    background-color: darken($brand-primary, 5%);
-    transform: scale(1);
+  &--primary {
+    background-color: $brand-tertiary;
+    color: $text-alternative;
+
+    &:hover {
+      background-color: darken($brand-tertiary, 6%);
+    }
   }
 
   &:disabled {
     cursor: not-allowed;
-    color: darken($text-alternative, 10%);
-    background: darken($brand-secondary, 10%);
-    transform: scale(1);
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
   }
 }
+
 .btn-block {
   display: block;
   margin: 0 0 10px;

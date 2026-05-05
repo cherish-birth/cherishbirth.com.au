@@ -13,16 +13,40 @@ function onReady() {
   var menu = document.querySelector('nav .menu')
   var expandBtn = menu && menu.querySelector('[data-menu-expand]')
   if (expandBtn && menu) {
+    function closeMenu() {
+      if (!menu.classList.contains('is-open')) return
+      menu.classList.remove('is-open')
+      expandBtn.setAttribute('aria-expanded', 'false')
+    }
+
     expandBtn.addEventListener('click', function handleMenuExpandClick(event) {
       if (!isMobileNavLayout()) return
       event.preventDefault()
       var open = menu.classList.toggle('is-open')
       expandBtn.setAttribute('aria-expanded', open ? 'true' : 'false')
     })
+
+    // Close on outside click (ignored when event.target is inside .menu).
+    document.addEventListener('click', function handleOutsideClick(event) {
+      if (!isMobileNavLayout()) return
+      if (!menu.classList.contains('is-open')) return
+      if (menu.contains(event.target)) return
+      closeMenu()
+    })
+
+    // Escape: close and return focus to the expand toggle.
+    document.addEventListener('keydown', function handleMenuKeydown(event) {
+      if (event.key !== 'Escape') return
+      if (!isMobileNavLayout()) return
+      if (!menu.classList.contains('is-open')) return
+      event.preventDefault()
+      closeMenu()
+      expandBtn.focus()
+    })
+
     function closeMenuIfDesktop() {
       if (!mobileNavMql.matches) {
-        menu.classList.remove('is-open')
-        expandBtn.setAttribute('aria-expanded', 'false')
+        closeMenu()
       }
     }
     if (mobileNavMql.addEventListener) {

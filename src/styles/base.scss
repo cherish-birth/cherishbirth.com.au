@@ -13,6 +13,9 @@ body {
   font-family: $font-serif;
   font-weight: $font-serif-regular;
   font-size: $font-size-base;
+  line-height: $base-line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 b,
@@ -206,8 +209,8 @@ ol.circles {
   padding: 0;
 
   > li {
-    $circle-size: 26px;
-    $circle-offset: 34px;
+    $circle-size: 28px;
+    $circle-offset: 36px;
 
     counter-increment: steps-counter;
     margin: 10px 0 0 $circle-offset;
@@ -221,17 +224,11 @@ ol.circles {
       width: $circle-size;
       height: $circle-size;
       line-height: $circle-size;
+      font-size: 0.9em;
       text-indent: 0;
       text-align: center;
-      margin-right: 8px;
-      border-radius: $circle-size * 0.5;
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-
-      transform: scale(0.9);
-      transition: transform $base-transition;
-    }
-    &:hover:before {
-      transform: scale(1);
+      margin-right: 10px;
+      border-radius: 50%;
     }
   }
 }
