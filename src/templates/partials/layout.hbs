@@ -35,6 +35,10 @@
     {{#each pages}}
       <link rel="prefetch" href="{{noDoubleSlash (concat this.url '/index.html') }}">
     {{/each}}
+
+    {{#if isProduction}}
+      {{> plausible }}
+    {{/if}}
   </head>
   <body>
     <div class="container">
