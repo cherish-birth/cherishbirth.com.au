@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const mkdirp = require('mkdirp');
 const Handlebars = require('handlebars');
 
 module.exports = function(isProduction = false, paths) {
@@ -61,7 +60,7 @@ function loadHandlebarsTemplate(templateFile) {
 }
 
 function writeFile(outputDir, html, fileName = 'index.html') {
-  mkdirp.sync(outputDir);
+  fs.mkdirSync(outputDir, { recursive: true });
   fs.writeFileSync(path.join(outputDir, fileName), html);
 }
 
