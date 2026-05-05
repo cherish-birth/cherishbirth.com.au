@@ -1,5 +1,4 @@
-@import './variables';
-@import './base';
-@import './buttons';
-@import './navbar';
-@import './modal';
+@use 'base';
+@use 'buttons';
+@use 'navbar';
+@use 'modal';

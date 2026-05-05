@@ -1,4 +1,5 @@
-@import './variables';
+@use 'sass:color';
+@use 'variables' as *;
 
 nav {
   margin: 15px 0;
@@ -123,7 +124,7 @@ nav {
 
       &:hover,
       &:focus {
-        background-color: darken($brand-secondary, 6%);
+        background-color: color.adjust($brand-secondary, $lightness: -6%);
       }
 
       .caret {

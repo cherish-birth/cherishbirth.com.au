@@ -1,4 +1,5 @@
-@import './variables';
+@use 'sass:color';
+@use 'variables' as *;
 
 $modal-ease: cubic-bezier(0.22, 1, 0.36, 1);
 $modal-enter-ms: 420ms;
@@ -59,7 +60,7 @@ body.freebies-modal-open {
   margin: 0;
   padding: (1.5 * $base-padding) $base-padding $base-padding;
   box-sizing: border-box;
-  background: lighten($background-primary, 4%);
+  background: color.adjust($background-primary, $lightness: 4%);
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
   opacity: 0;
@@ -99,7 +100,7 @@ body.freebies-modal-open {
   &:hover,
   &:focus {
     color: $text-primary;
-    background: fade_out($text-primary, 0.92);
+    background: color.adjust($text-primary, $alpha: -0.92);
   }
 
   &:focus:not(:focus-visible) {
@@ -140,7 +141,7 @@ body.freebies-modal-open {
   padding: 12px 14px;
   font-family: $font-sans-serif;
   font-size: $font-size-base;
-  border: 1px solid fade_out($text-primary, 0.75);
+  border: 1px solid color.adjust($text-primary, $alpha: -0.75);
   border-radius: 8px;
   background: $text-alternative;
   transition: border-color $fast-transition, box-shadow $fast-transition;
@@ -148,7 +149,7 @@ body.freebies-modal-open {
   &:focus {
     outline: none;
     border-color: $brand-secondary;
-    box-shadow: 0 0 0 3px fade_out($brand-secondary, 0.65);
+    box-shadow: 0 0 0 3px color.adjust($brand-secondary, $alpha: -0.65);
   }
 }
 

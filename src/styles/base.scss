@@ -1,4 +1,5 @@
-@import './variables.scss';
+@use 'sass:color';
+@use 'variables' as *;
 
 html,
 body {
@@ -60,7 +61,7 @@ ul + img {
 }
 
 .badge {
-  background: fade_out($text-primary, 0.95);
+  background: color.adjust($text-primary, $alpha: -0.95);
   padding: 1px 10px;
   margin: 0 5px;
   border-radius: 5px;
