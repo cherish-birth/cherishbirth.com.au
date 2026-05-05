@@ -12,6 +12,7 @@ const sass = require('gulp-sass')(require('sass'))
 const browserSync = require('browser-sync').create()
 const sourcemaps = require('gulp-sourcemaps')
 const uglify = require('gulp-uglify')
+const fs = require('fs')
 const path = require('path')
 const pump = require('pump')
 
@@ -33,7 +34,9 @@ const buildHtml = () => {
 
   return pump([
     gulp.src(path.join(paths.dist, '**', '*.html')),
-    cachebust(),
+    cachebust({
+      basePath: `${paths.dist}${path.sep}`,
+    }),
     htmlmin({ collapseWhitespace: true, removeComments: true }),
     gulp.dest(paths.dist),
   ])
@@ -79,12 +82,19 @@ const cleanAndBuildScripts = gulp.series(cleanScripts, buildScripts)
  * COPY FILES
  */
 const cleanCopies = () => del(paths.copies.map(copy => path.join(paths.dist, copy)))
-const copyFiles = () =>
-  Promise.all(
-    paths.copies.map(copy =>
-      pump([gulp.src(path.join(paths.src, copy, '**')), gulp.dest(path.join(paths.dist, copy))])
-    )
+
+/** Copy static asset trees with Node (avoids gulp glob/stream quirks for binary assets). */
+const copyFiles = async () => {
+  await Promise.all(
+    paths.copies.map(async copy => {
+      const from = path.join(paths.src, copy)
+      const to = path.join(paths.dist, copy)
+      if (!fs.existsSync(from)) return
+      await fs.promises.cp(from, to, { recursive: true, force: true })
+    })
   )
+}
+
 const cleanAndCopyFiles = gulp.series(cleanCopies, copyFiles)
 
 const clean = () => del(paths.dist)
