@@ -229,10 +229,20 @@ ol.circles {
   @media (max-width: ($desktop-width - 1)) {
     flex-direction: column;
 
-    &--image-right .image-aside__image {
+    &--image-right:not(.image-aside--image-top-mobile) .image-aside__image {
       margin: $base-margin auto 0;
     }
-    &--image-left .image-aside__image {
+    &--image-left:not(.image-aside--image-top-mobile) .image-aside__image {
+      margin: $base-margin auto 0;
+    }
+
+    &--image-top-mobile .image-aside__image {
+      order: -1;
+    }
+    &--image-right.image-aside--image-top-mobile .image-aside__image {
+      margin: 0 auto $base-margin auto;
+    }
+    &--image-left.image-aside--image-top-mobile .image-aside__image {
       margin: 0 auto $base-margin auto;
     }
   }
