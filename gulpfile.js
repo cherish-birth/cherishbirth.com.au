@@ -121,11 +121,43 @@ const watch = () => {
 }
 
 const startServer = done => {
+  const notFoundPath = path.join(paths.dist, '404.html')
+
+  const resolveRequestVariants = requestPath => {
+    const cleanPath = decodeURIComponent(requestPath.split('?')[0].split('#')[0])
+    const relativePath = cleanPath.replace(/^\/+/, '')
+    const absolutePath = path.join(paths.dist, relativePath)
+
+    return [
+      absolutePath,
+      `${absolutePath}.html`,
+      path.join(absolutePath, 'index.html'),
+    ]
+  }
+
   browserSync.init(
     {
       server: {
         baseDir: paths.dist,
         index: 'index.html',
+        middleware: [
+          (req, res, next) => {
+            if (req.method !== 'GET') return next()
+            if (req.url.startsWith('/__browser_sync')) return next()
+
+            const isLikelyAsset = path.extname(req.url.split('?')[0]) !== ''
+            if (isLikelyAsset) return next()
+
+            const hasMatchedFile = resolveRequestVariants(req.url).some(candidate =>
+              fs.existsSync(candidate)
+            )
+            if (hasMatchedFile) return next()
+
+            if (!fs.existsSync(notFoundPath)) return next()
+            res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' })
+            res.end(fs.readFileSync(notFoundPath, 'utf8'))
+          },
+        ],
       },
       port: 8000,
       host: '0.0.0.0',
