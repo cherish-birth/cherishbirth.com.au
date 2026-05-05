@@ -20,6 +20,7 @@ module.exports = function(isProduction = false, paths) {
     const pageTemplate = loadHandlebarsTemplate(path.join(pagesDir, `${page.template}.hbs`));
     const pageHtml = renderTemplate(pageTemplate, {
       browserTitle: (page.browserTitle !== false ? `${page.pageTitle} | ` : '') + baseTitle,
+      metaDescription: page.metaDescription || null,
       activeMenu: page.activeMenuId || null,
       activePath: page.url,
       showFreebiesModal: !!page.showFreebiesModal,

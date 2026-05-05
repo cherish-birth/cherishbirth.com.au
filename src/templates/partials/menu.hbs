@@ -19,13 +19,13 @@
                     aria-controls="primary-nav-menu"
                     aria-label="Show all pages"
                   >
-                    <span class="caret"><i class="fa fa-caret-down fa-2x"></i></span>
+                    <span class="caret" aria-hidden="true"><i class="fa fa-caret-down fa-2x"></i></span>
                   </button>
                 </div>
               {{else}}
                 <a class="btn" href="{{ page.url }}">
                   {{{ page.pageTitle }}}
-                  <span class="caret"><i class="fa fa-caret-down fa-2x"></i></span>
+                  <span class="caret" aria-hidden="true"><i class="fa fa-caret-down fa-2x"></i></span>
                 </a>
               {{/equal}}
               <div class="menu__mobile-subs" role="group" aria-label="{{ page.pageTitle }}">
@@ -57,13 +57,13 @@
                   aria-controls="primary-nav-menu"
                   aria-label="Show all pages"
                 >
-                  <span class="caret"><i class="fa fa-caret-down fa-2x"></i></span>
+                  <span class="caret" aria-hidden="true"><i class="fa fa-caret-down fa-2x"></i></span>
                 </button>
               </div>
             {{else}}
               <a class="btn" href="{{ page.url }}">
                 {{{ page.pageTitle }}}
-                <span class="caret"><i class="fa fa-caret-down fa-2x"></i></span>
+                <span class="caret" aria-hidden="true"><i class="fa fa-caret-down fa-2x"></i></span>
               </a>
             {{/equal}}
           {{/if}}

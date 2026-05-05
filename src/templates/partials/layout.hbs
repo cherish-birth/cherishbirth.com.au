@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<!--[if lte IE 9]><html lang="en" class="lte-ie9"><![endif]-->
-<!--[if !IE]> --><html lang="en"><!-- <![endif]-->
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>
@@ -11,31 +9,21 @@
       With you from pregnancy to parenthood |
       Illawarra Birth Doula
     </title>
+    <meta name="description" content="{{#if metaDescription}}{{ metaDescription }}{{else}}Cherish Birth — a Wollongong-based birth doula service supporting families through pregnancy, labour, birth and the early days of parenthood.{{/if}}">
 
     <!-- Icons -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
     <link rel="manifest" href="/images/icons/manifest.json">
-    <meta name="msapplication-TileColor" content="#d2e1e1">
-    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#d2e1e1">
 
     <!-- Vendor stylesheets -->
     {{#if isProduction}}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Martel:200,700" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Martel:wght@200;700&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
     {{else}}
       <link href="/vendor/font-awesome.css" rel="stylesheet">
       <link href="/vendor/google-fonts.css" rel="stylesheet">
@@ -47,10 +35,6 @@
     {{#each pages}}
       <link rel="prefetch" href="{{noDoubleSlash (concat this.url '/index.html') }}">
     {{/each}}
-
-    {{#if isProduction}}
-      {{> analytics }}
-    {{/if}}
   </head>
   <body>
     <div class="container">

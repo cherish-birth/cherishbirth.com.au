@@ -4,20 +4,23 @@
     "template": "index",
     "browserTitle": false,
     "pageTitle": "Home",
-    "activeMenuId": "home"
+    "activeMenuId": "home",
+    "metaDescription": "Cherish Birth — Alyssa Booth, a Wollongong-based birth doula supporting families through pregnancy, labour, birth and the early days of parenthood."
   },
   {
     "url": "/why-a-doula",
     "template": "doula",
     "pageTitle": "Why a Doula?",
-    "activeMenuId": "doula"
+    "activeMenuId": "doula",
+    "metaDescription": "What a birth doula does, and how non-medical, continuous support can change your pregnancy, labour and birth experience."
   },
   {
     "url": "/services",
     "template": "services",
     "pageTitle": "Services",
     "activeMenuId": "services",
-    "menuSubpagesParent": true
+    "menuSubpagesParent": true,
+    "metaDescription": "Birth doula packages, babywearing sessions and Doula Date Nights with Alyssa Booth in Wollongong and the Illawarra."
   },
   {
     "url": "/date-nights",
@@ -25,12 +28,14 @@
     "pageTitle": "Doula Date Nights",
     "activeMenuId": "services",
     "menuSubOf": "services",
-    "showFreebiesModal": true
+    "showFreebiesModal": true,
+    "metaDescription": "Doula Date Nights — three intimate evenings in Wollongong with Alyssa Booth and Susanna Alvarado covering movement, positioning, birth values and navigating the maternity system."
   },
   {
     "url": "/about",
     "template": "about",
     "pageTitle": "About me",
-    "activeMenuId": "about"
+    "activeMenuId": "about",
+    "metaDescription": "Meet Alyssa Booth — Wollongong-based birth doula, babywearing consultant and childbirth educator passionate about informed, supported birth."
   }
 ]

@@ -100,7 +100,15 @@ body.freebies-modal-open {
   &:focus {
     color: $text-primary;
     background: fade_out($text-primary, 0.92);
+  }
+
+  &:focus:not(:focus-visible) {
     outline: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $brand-tertiary;
+    outline-offset: 2px;
   }
 }
 
@@ -165,7 +173,7 @@ body.freebies-modal-open {
 }
 
 .freebies-modal__dismiss {
-  padding: 0;
+  padding: 2px 4px;
   border: none;
   background: none;
   font-family: $font-sans-serif;
@@ -173,12 +181,21 @@ body.freebies-modal-open {
   color: $text-muted;
   text-decoration: underline;
   cursor: pointer;
+  border-radius: 4px;
   transition: color $fast-transition;
 
   &:hover,
   &:focus {
     color: $text-primary;
+  }
+
+  &:focus:not(:focus-visible) {
     outline: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $brand-tertiary;
+    outline-offset: 2px;
   }
 }
 
